@@ -21,7 +21,7 @@ fi
 VERSIONED_BUILD_DIR="${BUILD_DIR}/v/${GIT_BRANCH_NAME}"
 mkdir -p ${VERSIONED_BUILD_DIR}
 
-HUGO_ENV="production" hugo --gc -d ${VERSIONED_BUILD_DIR} || error_and_exit
+HUGO_ENV="production" hugo --gc -d ${VERSIONED_BUILD_DIR} -b /v/${GIT_BRANCH_NAME} || error_and_exit
 
 rsync -a --delete ${VERSIONED_BUILD_DIR}/* ${TARGET_DIR}/v/${GIT_BRANCH_NAME}
 
