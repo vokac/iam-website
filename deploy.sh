@@ -25,7 +25,7 @@ HUGO_ENV="production" hugo --gc -d ${VERSIONED_BUILD_DIR} -b /v/${GIT_BRANCH_NAM
 
 rsync -a --delete ${VERSIONED_BUILD_DIR}/* ${TARGET_DIR}/v/${GIT_BRANCH_NAME}
 
-if [ -n "${LINK_TO_MAIN}" ]; then
+if [ -n "${LINK_TO_CURRENT}" ]; then
   pushd ${TARGET_DIR}/v
   rm -f current
   ln -sf ${GIT_BRANCH_NAME} current
