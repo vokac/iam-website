@@ -159,7 +159,7 @@ enable = false
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
-	url = "https://github.com/indigoiam/iam"
+	url = "https://github.com/indigo-iam/iam"
 	icon = "fab fa-github"
         desc = "Development takes place here!"
 [[params.links.developer]]
@@ -167,11 +167,6 @@ enable = false
 	url = "https://indigo-iam.slack.com"
 	icon = "fab fa-slack"
         desc = "Chat with other project developers"
-
-
-[[params.versions]]
-version = "main"
-url = "https://indigo-iam.github.io/v/main"
 
 
 [[params.versions]]
