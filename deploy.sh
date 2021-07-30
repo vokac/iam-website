@@ -1,17 +1,33 @@
-#Copyright 2018 Google LLC
-#
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
-#
-#    https://www.apache.org/licenses/LICENSE-2.0
-#
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-#
-rm -rf public/
-HUGO_ENV="production" hugo --gc || exit 1
-s3deploy -source=public/ -region=eu-west-1 -bucket=bep.is -distribution-id=E8OKNT7W9ZYZ2 -path temp/td
+#!/bin/bash
+set -ex
+
+BUILD_DIR=public
+GIT_COMMIT_SHA=$(git rev-parse --short HEAD)
+GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed 's#/#_#g')
+TARGET_DIR=${TARGET_DIR:-$HOME/git/indigo-iam.github.io}
+
+function error_and_exit(){
+  echo "Website build failed!" && exit 1
+}
+
+rm -rf ${BUILD_DIR}
+mkdir -p ${BUILD_DIR}
+
+if [ "${GIT_BRANCH_NAME}" == "HEAD" ]; then
+  echo "headless build, exiting..."
+  exit 1
+fi
+
+VERSIONED_BUILD_DIR="${BUILD_DIR}/v/${GIT_BRANCH_NAME}"
+mkdir -p ${VERSIONED_BUILD_DIR}
+
+HUGO_ENV="production" hugo --gc -d ${VERSIONED_BUILD_DIR} || error_and_exit
+
+rsync -a --delete ${VERSIONED_BUILD_DIR}/* ${TARGET_DIR}/v/${GIT_BRANCH_NAME}
+
+if [ -n "${LINK_TO_MAIN}" ]; then
+  pushd ${TARGET_DIR}/v
+  rm -f current
+  ln -sf ${GIT_BRANCH_NAME} current
+  popd
+fi
