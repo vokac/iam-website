@@ -22,7 +22,9 @@ IAM implements two levels of access control on OAuth scopes:
 
 This behaviour is described in the following picture:
 
-<img src="/images/scope-access-control.png" width="500px">
+{{< imgproc scope-access-control.png Resize "500x" >}}
+{{< /imgproc >}}
+
 
 ## Scope policies
 
