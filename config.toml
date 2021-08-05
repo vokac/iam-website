@@ -79,7 +79,7 @@ section = ["HTML", "print"]
 product = "INDIGO IAM"
 
 copyright = "INFN"
-privacy_policy = "https://policies.google.com/privacy"
+# privacy_policy = "https://policies.google.com/privacy"
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
@@ -172,3 +172,9 @@ enable = false
 [[params.versions]]
 version = "v1.7.0"
 url = "https://indigo-iam.github.io/v/v1.7.0"
+
+
+[[params.versions]]
+version = "older releases"
+url = "https://indigo-iam.github.io/docs"
+
