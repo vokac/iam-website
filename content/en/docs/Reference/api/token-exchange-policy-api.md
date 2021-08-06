@@ -206,7 +206,7 @@ Let's assume we have two exchange policies defined:
       "description": "All all exchanges just for the openid scope",
       "creationTime": "2021-08-05T14:38:52.000+02:00",
       "lastUpdateTime": "2021-08-05T14:38:52.000+02:00",
-      "rule": "DENY",
+      "rule": "PERMIT",
       "originClient": {
         "type": "ANY"
       },
