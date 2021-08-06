@@ -378,8 +378,8 @@ Provide a representation of the Scope Policy to be modified.
   "description": [text, optional, at most 512 chars],
   "rule": [text, allowed values: "PERMIT", "DENY"],
   "matchingPolicy":[text, allowed values: "EQ", "REGEXP", "PATH"],
-  "account":[a valid account identifier],
-  "group":[a valid group identifier ],
+  "account":[a valid account selector],
+  "group":[a valid group selector ],
   "scopes":[a list of scopes, minimum 1 and maximum 255 chars]
 }
 ```
