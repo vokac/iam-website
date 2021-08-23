@@ -10,6 +10,8 @@ group membership, etc.
 Access to the API is restricted to administrator users or OAuth clients that
 have access to the `scim:read` (for read access) or `scim:write` (for write
 access) OAuth scopes.
+Note that these scopes are restricted in the default IAM configuration, i.e.
+can be assigned to clients only by IAM administrators.
 
 Examples below assume OAuth authorization via bearer token: e.g.
 
@@ -39,6 +41,47 @@ For each endpoint, the following methods are allowed:
 | PATCH         | Modifies a Resource with a set of specified changes \(partial update\). |
 | DELETE        | Deletes a Resource.                                                     |
 
+{{% alert title="Warning" color="warning" %}}
+
+For scalability reasons, IAM no longer returns the `members` claim for the SCIM
+Group resources, as the SCIM standard does not currently describe a way to
+implement pagination on group members.
+
+For this reason, IAM provides two additional resources:
+- the `members` resource, which returns a paginated view of users belonging to
+  a given group;
+- the `sugroups` resource, which returns a paginated view of subgroups of a
+  given group.
+
+{{% /alert %}}
+
+## Pagination 
+
+IAM SCIM implementation supports [pagination][scim-pagination] on the
+`/scim/Users`, `/scim/Groups` resources, as mandated by the standard, but also
+on the non-standard `/scim/Groups/{id}/members` and
+`/scim/Groups/{id}/subgroups` endpoints.
+
+**Pagination** parameters can be used together to "page through" large numbers
+of Resources. Pagination is not session based so clients must never assume
+repeatable results.
+
+The following table describes URL pagination parameters:
+
+| Parameter   | Description                                                                                      | Default   |
+| ----------- | -------------                                                                                    | --------- |
+| startIndex  | The 1-based index of the first search result.                                                    | 1         |
+| count       | Non-negative Integer. Specifies the desired maximum number of search results per page; e.g., 10. | None.     |
+
+The following table describes the query response pagination attributes:
+
+| Element      | Description                                                                                               |
+| ---------    | -------------                                                                                             |
+| itemsPerPage | Non-negative Integer. Specifies the number of search results returned in a query response page; e.g., 10. |
+| totalResults | Non-negative Integer. Specifies the total number of results matching the client query; e.g., 1000.        |
+| startIndex   | The 1-based index of the first result in the current set of search results; e.g., 1.                      |
+
+
 ## GET `/scim/Users/{id}`
 
 Retrieves all the information about the user identified by `id` and returns results in application/json.
@@ -49,7 +92,7 @@ Requires `ROLE_ADMIN` or scope `scim:read`.
 GET http://localhost:8080/scim/Users/2cb10ac5-5b1a-47a0-8f60-48995999f18d
 ```
 
-```
+```json
 {
     "id": "2cb10ac5-5b1a-47a0-8f60-48995999f18d",
     "meta": {
@@ -90,7 +133,7 @@ Requires `ROLE_ADMIN` or scope `scim:write`.
 POST http://localhost:8080/scim/Users/
 ```
 
-```
+```json
 {
     "userName": "paul_mccartney",
     "name": {
@@ -111,7 +154,7 @@ POST http://localhost:8080/scim/Users/
 Successful Resource creation is indicated with a `201 Created` response code.
 Upon successful creation, the response body contains the newly created User.
 
-```
+```json
 {
     "id": "2cb10ac5-5b1a-47a0-8f60-48995999f18d",
     "meta": {
@@ -150,32 +193,13 @@ SCIM defines a standard set of operations that can be used to filter, sort, and
 paginate response results. The operations are specified by adding query
 parameters to the Resource's endpoint.
 
-**Pagination** parameters can be used together to "page through" large numbers
-of Resources. Pagination is not session based so clients must never assume
-repeatable results.
-
-The following table describes the URL pagination parameters.
-
-| Parameter   | Description                                                                                      | Default   |
-| ----------- | -------------                                                                                    | --------- |
-| startIndex  | The 1-based index of the first search result.                                                    | 1         |
-| count       | Non-negative Integer. Specifies the desired maximum number of search results per page; e.g., 10. | None.     |
-
-The following table describes the query response pagination attributes.
-
-| Element      | Description                                                                                               |
-| ---------    | -------------                                                                                             |
-| itemsPerPage | Non-negative Integer. Specifies the number of search results returned in a query response page; e.g., 10. |
-| totalResults | Non-negative Integer. Specifies the total number of results matching the client query; e.g., 1000.        |
-| startIndex   | The 1-based index of the first result in the current set of search results; e.g., 1.                      |
-
-The below example returns the first 10 users (implicit startIndex as 1):
+The example below returns the first 10 users (implicit startIndex as 1):
 
 ```
 GET /scim/Users?count=10
 ```
 
-```
+```json
 {
     "totalResults": 250,
     "itemsPerPage": 10,
@@ -250,7 +274,7 @@ needed attribute(s). The below example returns only the userName for all Users:
 GET http://localhost:8080/scim/Users?attributes=userName
 ```
 
-```
+```json
 {
     "totalResults": 250,
     "itemsPerPage": 100,
@@ -291,7 +315,7 @@ Request params:
 - `count=2`
 - `attributes=userName,emails,urn:indigo-dc:scim:schemas:IndigoUser`
 
-```
+```json
 {
     "totalResults": 250,
     "itemsPerPage": 2,
@@ -379,7 +403,7 @@ Example of changing the userName from `john_lennon` to `j.lennon` and setting `a
 GET http://localhost:8080/scim/Users/e380b4e3-7b63-47c2-b156-3699be9ebcfe
 ```
 
-```
+```json
 {
     "schemas": [
         "urn:ietf:params:scim:schemas:core:2.0:User",
@@ -407,7 +431,7 @@ Retrieved the user's info, update userName as `"userName": "j.lennon"` and add `
 PUT http://localhost:8080/scim/Users/e380b4e3-7b63-47c2-b156-3699be9ebcfe
 ```
 
-```
+```json
 {
     "schemas": [
         "urn:ietf:params:scim:schemas:core:2.0:User",
@@ -560,7 +584,8 @@ GET /scim/Users/4380e98c-02f2-4d10-85ba-9fbbdb819ed8
 
 ## GET `/scim/Groups/{id}`
 
-Retrieves all the information about the group identified by `id` and returns results in application/json.
+Retrieves information about the group identified by `id` and returns results in
+application/json.
 
 Requires `ROLE_ADMIN` or scope `scim:read`.
 
@@ -568,7 +593,7 @@ Requires `ROLE_ADMIN` or scope `scim:read`.
 GET /scim/Groups/c617d586-54e6-411d-8e38-64967798fa8a
 ```
 
-```
+```json
 {
     "id": "c617d586-54e6-411d-8e38-64967798fa8a",
     "meta": {
@@ -580,19 +605,107 @@ GET /scim/Groups/c617d586-54e6-411d-8e38-64967798fa8a
     "schemas": [
         "urn:ietf:params:scim:schemas:core:2.0:Group"
     ],
-    "displayName": "Production",
-    "members": [
-        {
-            "display": "test",
-            "value": "80e5fb8d-b7c8-451a-89ba-346ae278a66f",
-            "$ref": "http://localhost:8080/scim/Users/80e5fb8d-b7c8-451a-89ba-346ae278a66f"
-        },
-        {
-            "display": "admin",
-            "value": "73f16d93-2441-4a50-88ff-85360d78c6b5",
-            "$ref": "http://localhost:8080/scim/Users/73f16d93-2441-4a50-88ff-85360d78c6b5"
-        }
-    ]
+    "displayName": "Production"
+}
+```
+{{% alert title="Warning" color="warning" %}}
+
+To provide scalable management of group membership, IAM does no longer return
+the `members` claim for the SCIM Group resources, as the SCIM standard does not
+currently describe a way to implement pagination on group members.
+
+See the `members` and `subgroups` sub-resources.
+
+{{% /alert %}}
+
+## GET `/scim/Groups/{id}/members`
+
+Returns a paginated list of user accounts, ordered by username, which are
+members of the group identified by `id`. To know about more about pagination
+parameters, see the [Pagination section](#pagination).
+
+Requires `ROLE_ADMIN` or scope `scim:read`.
+
+```
+GET https://wlcg.cloud.cnaf.infn.it/scim/Groups/b86a9e99-9f0e-478f-999c-2046c764aa14/members?count=5
+```
+
+```json
+{
+  "totalResults": 151,
+  "itemsPerPage": 5,
+  "startIndex": 1,
+  "schemas": [
+    "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+  ],
+  "Resources": [
+    {
+      "display": "Example User 1",
+      "value": "92287eed-80eb-4702-be59-a9e313d7b85e",
+      "$ref": "https://wlcg.cloud.cnaf.infn.it/scim/Users/92287eed-80eb-4702-be59-a9e313d7b85e"
+    },
+    {
+      "display": "Example User 2",
+      "value": "bda5a5af-4067-4814-9b59-fd7265978cc4",
+      "$ref": "https://wlcg.cloud.cnaf.infn.it/scim/Users/bda5a5af-4067-4814-9b59-fd7265978cc4"
+    },
+    {
+      "display": "Example User 3",
+      "value": "7489bf81-65db-4457-8ea6-6707d6405681",
+      "$ref": "https://wlcg.cloud.cnaf.infn.it/scim/Users/7489bf81-65db-4457-8ea6-6707d6405681"
+    },
+    {
+      "display": "Example User 4",
+      "value": "90cc5097-d904-4290-97b9-08a2646326b3",
+      "$ref": "https://wlcg.cloud.cnaf.infn.it/scim/Users/90cc5097-d904-4290-97b9-08a2646326b3"
+    },
+    {
+      "display": "Example User 5",
+      "value": "e83eec5a-e2e3-43c6-bb67-df8f5ec3e8d0",
+      "$ref": "https://wlcg.cloud.cnaf.infn.it/scim/Users/e83eec5a-e2e3-43c6-bb67-df8f5ec3e8d0"
+    }
+  ]
+}
+```
+
+
+## GET `/scim/Groups/{id}/subgroups`
+
+Returns a paginated list of groups, ordered by name, which are direct sub-groups of the group
+identified by `id`. To know about more about pagination parameters, see the
+[Pagination section](#pagination).
+
+Requires `ROLE_ADMIN` or scope `scim:read`.
+
+```
+GET https://wlcg.cloud.cnaf.infn.it/scim/Groups/b86a9e99-9f0e-478f-999c-2046c764aa14/subgroups?count=10
+```
+
+```json
+{
+  "totalResults": 3,
+  "itemsPerPage": 3,
+  "startIndex": 1,
+  "schemas": [
+    "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+  ],
+  "Resources": [
+    {
+      "display": "wlcg/pilots",
+      "value": "25084f30-1d71-4ab2-91e8-11148af16682",
+      "$ref": "https://wlcg.cloud.cnaf.infn.it/scim/Groups/25084f30-1d71-4ab2-91e8-11148af16682"
+    },
+    {
+      "display": "wlcg/test",
+      "value": "34bdcf9e-fc17-4a80-a4b7-19f7964439e6",
+      "$ref": "https://wlcg.cloud.cnaf.infn.it/scim/Groups/34bdcf9e-fc17-4a80-a4b7-19f7964439e6"
+    },
+    {
+      "display": "wlcg/xfers",
+      "value": "f356885a-9d06-4687-b5fe-57322430f111",
+      "$ref": "https://wlcg.cloud.cnaf.infn.it/scim/Groups/f356885a-9d06-4687-b5fe-57322430f111"
+    }
+  ]
 }
 ```
 
@@ -771,3 +884,4 @@ GET /scim/Groups/5bae2407-08e3-4171-b180-4b4a0196e7b6
 [mitre-doc-api]: https://github.com/mitreid-connect/OpenID-Connect-Java-Spring-Server/wiki/API
 [scim]: http://www.simplecloud.info/
 [scim-core-schema]: https://tools.ietf.org/html/rfc7643
+[scim-pagination]: https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4
