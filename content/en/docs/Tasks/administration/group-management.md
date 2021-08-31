@@ -56,9 +56,12 @@ Choose one or more groups and confirm the operation:
 
 ![INDIGO IAM Add group membership](../images/IAM-groups-07.png)
 
-When a user is added as member of a group, he/she does not inherit the
-membership in the parent group, i.e. the user must be explicitly associated
-with all the groups.
+Starting with version 1.7.0, when a user is added as member of group `g`, IAM
+takes care of adding him/her to all the parent groups leading to `g` that
+he/she is not already a member of.  In previous versions this had to be done
+manually by the IAM administrator. Following the same rationale, when a user is
+removed from a group, it is also automatically removed from any children groups
+he is a member of.
 
 To remove a user from a group, click the _Remove_ button.
 

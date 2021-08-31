@@ -66,4 +66,4 @@ in the following example:
 Note that the `ssh-keys` scope is a **restricted** scope, i.e., it can be
 assigned to client registered in IAM only by IAM administrators.
 
-[scim-apis]: /docs/reference/api/scim-api
+[scim-apis]: {{< ref "docs/reference/api/scim-api" >}}
