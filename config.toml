@@ -126,6 +126,9 @@ offlineSearch = true
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false
 
+# VOMS aa version 
+voms_aa_version = "0.7.1"
+
 # User interface configuration
 [params.ui]
 # Enable to show the side bar menu in its compact state.

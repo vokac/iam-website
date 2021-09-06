@@ -2,6 +2,8 @@
 title: "Developer guide"
 linkTitle: "Developer guide"
 weight: 20
+description: >
+  Build instructions and other information for IAM developers
 ---
 
 ## IAM build requirements

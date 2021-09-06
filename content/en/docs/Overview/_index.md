@@ -55,13 +55,13 @@ For more information on how to access IAM as a service, click
 ### On-premise deployment 
 
 IAM is an Apache-licensed identity solution, for which we provide a Docker
-image on dockerhub and RPM and Debian packages.
+image on dockerhub and RPM packages.
 
-IAM can be deployed on-premises following the advice in the [Deployment and
-administration guide][deployment-guide].
+IAM can be deployed on-premises following the advice in the [Deployment
+guide][deployment-guide].
 
-[iam-as-a-service]: /docs/iam-aas/
-[deployment-guide]: /docs/administrator-guide/
+[iam-as-a-service]: {{< ref "/docs/iam-aas/" >}}
+[deployment-guide]: {{< ref "/docs/getting-started/" >}}
 [rucio]: https://rucio.cern.ch/
 [voms]: https://italiangrid.github.io/voms
 [wlcg]: https://wlcg.web.cern.ch/
