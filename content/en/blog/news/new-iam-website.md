@@ -13,9 +13,11 @@ The new IAM website is powered by [Docsy][docsy], a [Hugo][hugo] theme for
 creating technical documentation sites, which is increasingly popular in Open
 Source projects.  
 
-We think moving to Docsy improved the quality of IAM documentation. If you find
-something is missing or broken, let us know by opening an issue on the [IAM
-Website GitHub repo][iam-website-gh].
+The new site provides new and improved documentation.
+
+If you find something is missing or broken, let us know by opening an issue
+or suggest changes. The new Docsy website makes this very easy to anyone with a
+Github account, just see the tab on the rigth of each page.
 
 [docsy]: https://www.docsy.dev/
 [hugo]: https://gohugo.io/
