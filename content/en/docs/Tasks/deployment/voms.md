@@ -58,9 +58,10 @@ directory where you have writing privileges):
   ${X509_VOMS_DIR}/example.vo/voms.local.io.lsc
 ```
 
-Place then the LSC file in folder named as the VO
-For a working configuration, see the [VOMS AA docker compose
-file][voms-aa-compose].
+For an example nginx configuration, see the [VOMS AA docker compose
+file][voms-aa-compose-openresty].
+
+
 
 #### VOMS AA configuration
 
@@ -129,10 +130,11 @@ voms:
     use-legacy-fqan-encoding: true
 ```
 
-
+For an example configuration, see the [VOMS AA docker compose
+file][voms-aa-compose].
 
 [openresty-voms]: https://github.com/indigo-iam/openresty-voms
 [voms-aa]: https://github.com/indigo-iam/voms-aa
-[voms-aa-compose]: https://github.com/indigo-iam/voms-aa/blob/master/compose/docker-compose.yml 
+[voms-aa-compose-openresty]: https://github.com/indigo-iam/voms-aa/blob/master/compose/assets/openresty-voms/conf.d/voms.local.io.conf
 [voms]: http://italiangrid.github.io/voms/
 [egi-trustanchors]: https://github.com/indigo-iam/egi-trust-anchors-container/
