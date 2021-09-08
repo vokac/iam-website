@@ -14,16 +14,19 @@ jobs:
         with:
           hugo-version: '0.86.0'
           extended: true
-      - uses: actions/checkout@v2
-        with:
-          path: iam-website
-          submodules: recursive  # Fetch the Docsy theme
-          fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
+
       - uses: actions/checkout@v2
         with:
           repository: indigo-iam/indigo-iam.github.io
           path: indigo-iam.github.io
           ref: main
+
+      - uses: actions/checkout@v2
+        with:
+          path: iam-website
+          submodules: recursive  # Fetch the Docsy theme
+          fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
+
       - run: |
           pwd && find ${GITHUB_WORKSPACE} . -type d
           TARGET_DIR="${GITHUB_WORKSPACE}/indigo-iam.github.io" sh deploy.sh 
