@@ -43,4 +43,4 @@ jobs:
           fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
 
       - run: |
-          cd iam-website && npm ci && TARGET_DIR="${GITHUB_WORKSPACE}/indigo-iam.github.io" sh deploy.sh 
+          cd iam-website && npm ci && TARGET_DIR="${GITHUB_WORKSPACE}/indigo-iam.github.io" ./deploy.sh 
