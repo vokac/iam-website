@@ -13,7 +13,7 @@ error_and_exit () {
 rm -rf ${BUILD_DIR}
 mkdir -p ${BUILD_DIR}
 
-if [ "${GIT_BRANCH_NAME}" == "HEAD" ]; then
+if [ "${GIT_BRANCH_NAME}" = "HEAD" ]; then
   echo "headless build, exiting..."
   exit 1
 fi
