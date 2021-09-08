@@ -16,6 +16,7 @@ jobs:
           extended: true
       - uses: actions/checkout@v2
         with:
+          path: iam-website
           submodules: recursive  # Fetch the Docsy theme
           fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
       - uses: actions/checkout@v2
