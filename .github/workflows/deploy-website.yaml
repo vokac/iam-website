@@ -25,5 +25,5 @@ jobs:
           path: indigo-iam.github.io
           ref: main
       - run: |
-          pwd && ls -lR ${GITHUB_WORKSPACE}
+          pwd && find ${GITHUB_WORKSPACE} . -type d
           TARGET_DIR="${GITHUB_WORKSPACE}/indigo-iam.github.io" sh deploy.sh 
