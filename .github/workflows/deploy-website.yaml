@@ -32,15 +32,18 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: indigo-iam/indigo-iam.github.io
-          path: indigo-iam.github.io
+          path: target
           ref: main
 
       - name: Checkout source repo code
         uses: actions/checkout@v2
         with:
-          path: iam-website
+          path: source
           submodules: recursive  # Fetch the Docsy theme
           fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
 
       - run: |
-          cd iam-website && npm ci && TARGET_DIR="${GITHUB_WORKSPACE}/indigo-iam.github.io" ./deploy.sh 
+          ls -al && pwd
+          pushd source && npm ci && TARGET_DIR="${GITHUB_WORKSPACE}/indigo-iam.github.io" ./deploy.sh && popd
+          pushd target && git status
+
