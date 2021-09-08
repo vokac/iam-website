@@ -15,6 +15,19 @@ jobs:
           hugo-version: '0.86.0'
           extended: true
 
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Checkout target repo code
         uses: actions/checkout@v2
         with:
@@ -30,5 +43,4 @@ jobs:
           fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
 
       - run: |
-          ls -al 
-          cd iam-website && TARGET_DIR="${GITHUB_WORKSPACE}/indigo-iam.github.io" sh deploy.sh 
+          cd iam-website && npm ci && TARGET_DIR="${GITHUB_WORKSPACE}/indigo-iam.github.io" sh deploy.sh 
