@@ -15,13 +15,15 @@ jobs:
           hugo-version: '0.86.0'
           extended: true
 
-      - uses: actions/checkout@v2
+      - name: Checkout target repo code
+        uses: actions/checkout@v2
         with:
           repository: indigo-iam/indigo-iam.github.io
           path: indigo-iam.github.io
           ref: main
 
-      - uses: actions/checkout@v2
+      - name: Checkout source repo code
+        uses: actions/checkout@v2
         with:
           path: iam-website
           submodules: recursive  # Fetch the Docsy theme
