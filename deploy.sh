@@ -6,7 +6,7 @@ GIT_COMMIT_SHA=$(git rev-parse --short HEAD)
 GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed 's#/#_#g')
 TARGET_DIR=${TARGET_DIR:-$HOME/git/indigo-iam.github.io}
 
-function error_and_exit(){
+error_and_exit () {
   echo "Website build failed!" && exit 1
 }
 
