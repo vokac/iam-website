@@ -44,6 +44,6 @@ jobs:
 
       - run: |
           ls -al && pwd
-          pushd source && npm ci && TARGET_DIR="${GITHUB_WORKSPACE}/indigo-iam.github.io" ./deploy.sh && popd
+          pushd source && npm ci && TARGET_DIR="${GITHUB_WORKSPACE}/target" ./deploy.sh && popd
           pushd target && git status
 
