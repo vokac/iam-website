@@ -34,6 +34,7 @@ jobs:
           repository: indigo-iam/indigo-iam.github.io
           path: target
           ref: main
+          token: ${{ secrets.API_TOKEN_GITHUB }}
 
       - name: Checkout source repo code
         uses: actions/checkout@v2
