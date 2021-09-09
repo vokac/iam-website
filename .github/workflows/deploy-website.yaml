@@ -44,5 +44,7 @@ jobs:
 
       - run: |
           ls -al && pwd
+          git config --global user.email "andrea.ceccanti@gmail.com"
+          git config --global user.name "Andrea Ceccanti"
           pushd source && npm ci && TARGET_DIR="${GITHUB_WORKSPACE}/target" ./deploy.sh && popd
           pushd target && git add . && git commit -m "${{ github.event.head_commit.message }}" && git push
