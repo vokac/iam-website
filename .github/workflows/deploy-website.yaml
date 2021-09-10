@@ -43,7 +43,8 @@ jobs:
           submodules: recursive  # Fetch the Docsy theme
           fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
 
-      - run: |
+      - name: build & deploy website
+        run: |
           ls -al && pwd
           git config --global user.email "andrea.ceccanti@gmail.com"
           git config --global user.name "Andrea Ceccanti"
