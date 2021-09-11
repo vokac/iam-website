@@ -136,5 +136,7 @@ file][voms-aa-compose].
 [openresty-voms]: https://github.com/indigo-iam/openresty-voms
 [voms-aa]: https://github.com/indigo-iam/voms-aa
 [voms-aa-compose-openresty]: https://github.com/indigo-iam/voms-aa/blob/master/compose/assets/openresty-voms/conf.d/voms.local.io.conf
+[voms-aa-compose]:
+https://github.com/indigo-iam/voms-aa/blob/master/compose/docker-compose.yml
 [voms]: http://italiangrid.github.io/voms/
 [egi-trustanchors]: https://github.com/indigo-iam/egi-trust-anchors-container/
