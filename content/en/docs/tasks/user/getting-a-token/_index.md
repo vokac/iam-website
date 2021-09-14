@@ -45,12 +45,13 @@ Agent pid 62088
 
 In order to obtain a token out of IAM, a user needs a client registered.
 `oidc-agent` can automate this step and store client credentials securely
-on the user machine.
+on the user machine. This is a one-time operation, you do not need a new
+client every time you need a token.
 
 A new client can be registered using the `oidc-gen` command, as follows:
 
 ```bash
-$ oidc-get -w device wlcg
+$ oidc-gen -w device wlcg
 ```
 
 The `-w device` instructs `oidc-agent` to use the device code flow for the
@@ -77,7 +78,37 @@ oidc-agent will register a new client and store the client credentials and a
 refresh token locally in encrypted form (the agent will ask for a password from
 the user).
 
-### Getting tokens
+As mentioned, `oidc-gen` is meant to be used only once, when you need a client registered.
+
+### Managing oidc-agent account configurations
+
+To see the list of locally configured accounts use the following command:
+
+```bash
+> oidc-add -l
+
+The following account configurations are usable:
+DEEP-ac
+XDC
+atlas
+...
+cms-voms-importer
+escape
+escape-monitoring
+iam-test
+infn-cloud
+wlcg
+```
+
+You can then load an account in the agent again with the oidc-add command, as follows:
+
+```bash
+oidc-add wlcg
+```
+
+Once you've loaded the account, you can use `oidc-token` to get tokens for that account.
+
+### Getting tokens with `oidc-token`
 
 Tokens can be obtained using the `oidc-token` command, as follows:
 
@@ -98,7 +129,41 @@ The token audience can be limited using the `--aud` flag,
 ```bash
 oidc-token --aud example.audience -s storage.read:/ wlcg
 ```
+### Accessing oidc-agent client configuration
 
+Often is useful to get details about the client configuration generated 
+by oidc-agent. This can be done with the `oidc-gen -p` command, that is
+used to print a client configuration, as in the following example:
+
+```bash
+❯ oidc-gen -p wlcg
+Enter decryption password for account config 'wlcg':******
+{
+	"name":	"wlcg",
+	"client_name":	"oidc-agent:wlcg",
+	"issuer_url":	"https://wlcg.cloud.cnaf.infn.it/",
+	"device_authorization_endpoint":	"https://wlcg.cloud.cnaf.infn.it/devicecode",
+	"daeSetByUser":	0,
+	"client_id":	"*****",
+	"client_secret":	"*****",
+	"refresh_token":	"****.*****.",
+	"cert_path":	"",
+	"scope":	"storage.create:/ openid offline_access storage.read:/ eduperson_scoped_affiliation storage.modify:/ wlcg wlcg.groups eduperson_entitlement",
+	"audience":	"",
+	"redirect_uris":	["edu.kit.data.oidc-agent:/redirect", "http://localhost:8080", "http://localhost:47947", "http://localhost:4242"],
+	"username":	"",
+	"password":	"",
+	"client_id_issued_at":	1600444894,
+	"registration_access_token":	"****",
+	"registration_client_uri":	"https://wlcg.cloud.cnaf.infn.it/register/****",
+	"token_endpoint_auth_method":	"client_secret_basic",
+	"grant_types":	["urn:ietf:params:oauth:grant-type:device_code", "refresh_token"],
+	"response_types":	["token"],
+	"application_type":	"web",
+	"cert_path":	"",
+	"audience":	""
+}
+```
 ## Obtaining a token with the password flow
 
 The [password flow][oauth-password-flow] allows a user to get a token from the
