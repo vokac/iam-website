@@ -1,4 +1,4 @@
---
+---
 title: Registering a client
 weight: 2
 ---

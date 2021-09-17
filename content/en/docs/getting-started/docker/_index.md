@@ -36,4 +36,4 @@ Check the logs with:
 ```shell
 $ docker logs -f iam-login-service
 ```
-[config-reference]: {{< ref "/docs/reference/configuration" }}
+[config-reference]: {{< ref "/docs/reference/configuration" >}}
