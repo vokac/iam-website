@@ -18,7 +18,7 @@ indigoiam/iam-login-service:{{< param version >}}
 
 Prepare an environment file that will contain the environment variables
 settings for the IAM service container. See [the configuration
-reference](/docs/reference/configuration) for a description of the variables.
+reference][config-reference] for a description of the variables.
 
 The IAM service is run starting the docker container with the following command:
 
@@ -36,3 +36,4 @@ Check the logs with:
 ```shell
 $ docker logs -f iam-login-service
 ```
+[config-reference]: {{< ref "/docs/reference/configuration" }}
