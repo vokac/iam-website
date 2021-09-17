@@ -17,7 +17,7 @@ The new site provides new and improved documentation.
 
 If you find something is missing or broken, let us know by opening an issue
 or suggest changes. The new Docsy website makes this very easy to anyone with a
-Github account, just see the tab on the rigth of each page.
+Github account, just see the tab on the right of each page.
 
 [docsy]: https://www.docsy.dev/
 [hugo]: https://gohugo.io/
