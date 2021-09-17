@@ -65,4 +65,6 @@ To prevent modifications to any of the fields remove the field name from
 
 External configuration can be managed by placing directives as shown above in a
 [custom configuration
-file](/docs/reference/configuration/#overriding-default-configuration-templates).
+file][custom-config-file]
+
+[custom-config-file]: {{< ref "/docs/reference/configuration/#overriding-default-configuration-templates" >}}

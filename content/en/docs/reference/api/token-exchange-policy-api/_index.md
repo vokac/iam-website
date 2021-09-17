@@ -259,4 +259,4 @@ so policy `3` would be selected, which would allow the exchange.
 
 
 
-[scope-policies]: /docs/reference/api/scope-policy-api/#scope-policies
+[scope-policies]: {{< ref "/docs/reference/api/scope-policy-api/#scope-policies" >}}

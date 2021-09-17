@@ -23,7 +23,7 @@ be set for users at registration time.
 
 The relevant settings are managed  by placing `lifecycle` directives in a
 [custom configuration
-file](/docs/reference/configuration/#overriding-default-configuration-templates):
+file][custom-config-file]:
 
 ```yaml
 lifecycle:
@@ -38,3 +38,6 @@ lifecycle:
       cron-schedule:  0 */5 * * * *  ## spring cron schedule for the lifecycle task (default setting is every 5 mins)
       enabled: true ## To disable automatic account expiration set this to false
 ```
+
+
+[custom-config-file]: {{< ref "/docs/reference/configuration/#overriding-default-configuration-templates" >}}

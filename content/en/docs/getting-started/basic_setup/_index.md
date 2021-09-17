@@ -75,4 +75,4 @@ button from the admin home page, as shown in the following picture:
 ![Admin change password](../images/admin-change-password.png)
 
 
-[config-ref]: /docs/reference/configuration
+[config-ref]: {{< ref "/docs/reference/configuration" >}}

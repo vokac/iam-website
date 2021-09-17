@@ -203,7 +203,7 @@ IAM_GOOGLE_CLIENT_SECRET=
 ```
 
 For more information and examples, see the [OpenID Connect
-Authentication section](/docs/reference/configuration/external-authentication/oidc).
+Authentication section]({{< ref "/docs/reference/configuration/external-authentication/oidc" >}}).
 
 ## SAML authentication settings
 
@@ -262,7 +262,7 @@ IAM_SAML_ID_RESOLVERS=eduPersonUniqueId,eduPersonTargetedId,eduPersonPrincipalNa
 ```
 
 For more information and examples, see the [SAML Authentication
-section](/docs/reference/configuration/external-authentication/saml).
+section]({{< ref "/docs/reference/configuration/external-authentication/saml" >}}).
 
 ## Notification service settings
 

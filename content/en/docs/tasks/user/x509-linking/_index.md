@@ -6,7 +6,7 @@ IAM provides the ability to link X.509 certificates to a user account. X.509
 account linking works if:
 
 - X.509 certificate authentication is enabled for the IAM instance in use; for
-  more information on this see the [Getting started guide](/docs/getting-started/nginx);
+  more information on this see the [Getting started guide][getting-started-nginx]
 - The certificate is correctly installed in the browser used to access the IAM;
 - The certificate is trusted by the IAM (i.e. is signed by a certificate
   authority known and trusted by the IAM)
@@ -65,3 +65,4 @@ login again with the certificate.
 A user can unlink a certificate by clicking on the __Unlink__ button shown in
 the certificate panel (see the image above).
 
+[getting-started-nginx]: {{< ref "/docs/getting-started/nginx" >}}

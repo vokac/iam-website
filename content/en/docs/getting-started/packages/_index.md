@@ -38,7 +38,7 @@ We no longer maintain packages for the Ubuntu platform.
 The IAM service is configured via a configuration file named `iam-login-service`
 which holds the settings for the environment variables that drive its
 configuration (as described in the [configuration reference
-section](/docs/reference/configuration)).
+section]({{< ref "/docs/reference/configuration" >}})).
 
 The file is located in the following path:
 

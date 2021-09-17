@@ -10,7 +10,7 @@ at registration time or periodically.
 ## Managing the AUP 
 
 The AUP can be managed from the "AUP" section in the IAM dashboard, or via the
-[AUP management API](/docs/reference/api/aup-api). 
+[AUP management API]({{< ref "/docs/reference/api/aup-api" >}}). 
 
 Administrator privileges are required.
 

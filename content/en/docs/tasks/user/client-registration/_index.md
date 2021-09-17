@@ -1,4 +1,4 @@
----
+--
 title: Registering a client
 weight: 2
 ---
@@ -68,4 +68,4 @@ which can be used later to change the client configuration or to delete the
 client.
 
 [mitreid]: https://github.com/mitreid-connect/OpenID-Connect-Java-Spring-Server/wiki
-[reg-api]: /docs/reference/api/oidc-client-registration/
+[reg-api]: {{< ref "/docs/reference/api/oidc-client-registration/" >}}

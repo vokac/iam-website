@@ -221,7 +221,7 @@ instructions on how to override the default IAM configuration.
 [epuid]:http://software.internet2.edu/eduperson/internet2-mace-dir-eduperson-201602.html#eduPersonUniqueId
 [eptid]:http://software.internet2.edu/eduperson/internet2-mace-dir-eduperson-201602.html#eduPersonTargetedID
 [eppn]: http://software.internet2.edu/eduperson/internet2-mace-dir-eduperson-201602.html#eduPersonPrincipalName
-[conf-ref]: /docs/reference/configuration
+[conf-ref]: {{< ref "/docs/reference/configuration" >}}
 [shib-docs]: https://wiki.shibboleth.net/confluence/display/CONCEPT/EntityNaming
 [shib-docs-md]: https://wiki.shibboleth.net/confluence/display/CONCEPT/Metadata
 [sirtfi]: https://refeds.org/sirtfi

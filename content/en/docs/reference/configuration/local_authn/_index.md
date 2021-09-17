@@ -23,4 +23,6 @@ iam:
 
 Local authentication settings are configured providing a custom configuration
 file, as described
-[here](/docs/reference/configuration/#overriding-default-configuration-templates).
+[here][custom-config-file]
+
+[custom-config-file]: {{< ref "/docs/reference/configuration/#overriding-default-configuration-templates" >}}
