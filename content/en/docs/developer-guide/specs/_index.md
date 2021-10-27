@@ -6,7 +6,7 @@ description: >
   Specifications and useful resources for IAM development
 ---
 
-## OAuth 2.0
+## OAuth
 
 - [OAuth WG home](https://tools.ietf.org/wg/oauth/)
 - [Main OAuth RFC](https://datatracker.ietf.org/doc/html/rfc6749)
@@ -27,6 +27,7 @@ description: >
 - [Dynamic client management](https://datatracker.ietf.org/doc/html/rfc7592)
 - [Profile for JWT access tokens](https://datatracker.ietf.org/doc/html/rfc9068)
 - [Authentication method reference values](https://datatracker.ietf.org/doc/html/rfc8176)
+- [OAuth 2.1](https://oauth.net/2.1/)
 
 ## OpenID Connect
 
