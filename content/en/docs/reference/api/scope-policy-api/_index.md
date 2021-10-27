@@ -148,7 +148,7 @@ IAM currently supports three scope matching algorithms:
   scopes to scopes allowed by the client configuration or by the scope
   policies;
 
-- `REGEXP`: which uses a regular expression evaluation when comparting
+- `REGEXP`: which uses a regular expression evaluation when comparing
   requested scopes to scopes allowed by the client configuration or scope
   policies; 
 
