@@ -287,9 +287,12 @@ schema.
 
 ## GET `/scim/Me`
 
+
 Retrieves information about the currently authenticated user.
 
     GET http://localhost:8080/scim/Me
+
+Requires `ROLE_USER` or scope `scim:read`.
 
 ```json
 {
