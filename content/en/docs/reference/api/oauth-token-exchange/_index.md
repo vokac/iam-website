@@ -1,6 +1,9 @@
 ---
 title: "OAuth token exchange API"
 linkTitle: "OAuth token exchange API"
+resources:
+- src: "**.png"
+  title: "Image #:counter"
 ---
 
 The current release of the INDIGO IAM implements part of the [Token Exchange
@@ -14,7 +17,9 @@ OAuth 2.0 was designed to solve the problem of a delegated access to resources
 across services, mediated by an authorization server, as shown in the following
 picture:
 
-<img src="/images/oauth-delegation-1.png" alt="OAuth delegation">
+{{< imgproc oauth-delegation-1 Fit "500x500">}}
+OAuth delegation
+{{< /imgproc >}}
 
 In the picture above we have the usual OAuth roles:
 - The user (or *resource owner*, in OAuth terminology);
@@ -30,7 +35,10 @@ There are scenarios when a resource server, in order to satisfy a client
 request, needs to access resources hosted by other downstream services on
 behalf of the user, like in the following picture:
 
-<img src="/images/oauth-token-exchange-1.png" alt="OAuth delegation" height="200">
+
+{{< imgproc oauth-token-exchange-1 Fit "500x500">}}
+OAuth token exchange
+{{< /imgproc >}}
 
 In OAuth, access tokens are bearer tokens, so the first resource server could
 simply use the access token received from the client to interact, on behalf
