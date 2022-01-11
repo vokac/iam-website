@@ -49,6 +49,6 @@ Full key:
 ```
 
 Save the output of the above command (minus the `Full key:` initial text) in a
-file, e.g. `keystore.jks`.
+file, e.g. `keystore.jwks`.
 
 [jwk-generator]: https://github.com/mitreid-connect/json-web-key-generator
