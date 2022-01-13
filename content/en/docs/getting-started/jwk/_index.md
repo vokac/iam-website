@@ -22,6 +22,8 @@ Build the code with:
 ```shell
 mvn package
 ```
+A Maven version supporting Java 11 is required. 
+
 You can then generate a key with the following command:
 
 ```shell
