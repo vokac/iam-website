@@ -6,11 +6,12 @@ The IAM server has a RESTful API used to list and revoke active access and
 refresh tokens.
 
 Access to the API is limited to users with administrator privileges (either
-authenticated via a web session or through OAuth). All examples assume
-authorization via OAuth2 bearer token; e.g.
+authenticated via a web session or through OAuth). If using OAuth,
+be sure that the access token is obtained with an authorization code/device flow.  
+All examples assume authorization via OAuth2 bearer token; e.g.
 
 ```
-GET /access-tokens/13 HTTP/1.1
+GET /iam/api/access-tokens/13 HTTP/1.1
 Host: example.com
 Authorization: Bearer h480djs93hd8
 ```
@@ -19,18 +20,18 @@ These are the tokens REST API endpoints:
 
 **Accessing tokens**:
 
-- [GET /access-tokens](#get-access-tokens)
-- [GET /access-tokens/:id](#get-access-tokensid)
-- [GET /refresh-tokens](#get-refresh-tokens)
-- [GET /refresh-tokens/:id](#get-refresh-tokensid)
+- [GET /iam/api/access-tokens](#get-iamapiaccess-tokens)
+- [GET /iam/api/access-tokens/:id](#get-iamapiaccess-tokensid)
+- [GET /iam/api/refresh-tokens](#get-iamapirefresh-tokens)
+- [GET /iam/api/refresh-tokens/:id](#get-iamapirefresh-tokensid)
 
 **Deleting tokens**:
 
-- [DELETE /access-tokens/:id](#delete-access-tokensid)
-- [DELETE /refresh-tokens/:id](#delete-refresh-tokensid)
+- [DELETE /iam/api/access-tokens/:id](#delete-iamapiaccess-tokensid)
+- [DELETE /iam/api/refresh-tokens/:id](#delete-iamapirefresh-tokensid)
 
 
-## GET /access-tokens
+## GET /iam/api/access-tokens
 
 Retrieves the paginated list of all the active access tokens. Returns results in _application/json_.
 
@@ -48,7 +49,7 @@ Parameters:
 Example:
 
 ```
-GET http://example.com:8080/access-tokens
+GET http://example.com:8080/iam/api/access-tokens
 ```
 
 ```json
@@ -90,14 +91,14 @@ GET http://example.com:8080/access-tokens
 }
 ```
 
-## GET /access-tokens/:id
+## GET /iam/api/access-tokens/:id
 
 Retrieves all the information about the access token identified by **id** and returns results in _application/json_.
 
 Requires **ROLE_ADMIN**.
 
 ```
-GET http://example.com:8080/access-tokens/6
+GET http://example.com:8080/iam/api/access-tokens/6
 ```
 
 ```json
@@ -132,7 +133,7 @@ GET http://example.com:8080/access-tokens/6
 }
 ```
 
-## GET /refresh-tokens
+## GET /iam/api/refresh-tokens
 
 
 Retrieves the paginated list of all the active refresh tokens. Returns results in _application/json_.
@@ -151,7 +152,7 @@ Parameters:
 Example:
 
 ```
-GET http://example.com:8080/refresh-tokens
+GET http://example.com:8080/iam/api/refresh-tokens
 ```
 
 ```json
@@ -189,14 +190,14 @@ GET http://example.com:8080/refresh-tokens
 }
 ```
 
-## GET /refresh-tokens/:id
+## GET /iam/api/refresh-tokens/:id
 
 Retrieves all the information about the refresh token identified by **id** and returns results in _application/json_.
 
 Requires **ROLE_ADMIN**.
 
 ```
-GET http://example.com:8080/refresh-tokens/1083
+GET http://example.com:8080/iam/api/refresh-tokens/1083
 ```
 
 ```json
@@ -227,14 +228,14 @@ GET http://example.com:8080/refresh-tokens/1083
 }
 ```
 
-## DELETE /access-tokens/:id
+## DELETE /iam/api/access-tokens/:id
 
 Revoke the access token identified by **id**.
 
 Requires **ROLE_ADMIN**.
 
 ```
-DELETE http://example.com:8080/access-tokens/6
+DELETE http://example.com:8080/iam/api/access-tokens/6
 ```
 
 ```
@@ -242,14 +243,14 @@ DELETE http://example.com:8080/access-tokens/6
 ```
 
 
-## DELETE /refresh-tokens/:id
+## DELETE /iam/api/refresh-tokens/:id
 
 Revoke the access token identified by **id**.
 
 Requires **ROLE_ADMIN**.
 
 ```
-DELETE http://example.com:8080/refresh-tokens/1083
+DELETE http://example.com:8080/iam/api/refresh-tokens/1083
 ```
 
 ```
