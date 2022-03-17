@@ -30,18 +30,18 @@ you will need:
   configuration](mariadb)
   section;
 - A JSON keystore holding the keys used to sign JSON Web Tokens; more on this
-  in the [JWK section](json_web_key);
+  in the [JWK section](jwk);
 
 You will also need to choose whether you want to deploy you service as a
-[docker container](docker-install) (recommended) or install from
-[packages](package-install).
+[docker container](docker) (recommended) or install from
+[packages](packages).
 
-In case you chose to install from [packages](packages.md) you can have a look
+In case you chose to install from [packages](packages) you can have a look
 at the [IAM puppet module to deploy and configure the service](puppet-module).
 
 And finally, you will have to setup a minimal IAM configuration and change the
 administrator password for the newly configured IAM service; more on this
-[in the basic configuration section](basic_conf).
+[in the basic configuration section](basic_setup).
 
 [lets-encrypt]: https://letsencrypt.org/
 [spring-boot]: https://spring.io/projects/spring-boot
