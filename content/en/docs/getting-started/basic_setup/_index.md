@@ -53,9 +53,6 @@ and has the following meaning:
   administrative notifications from the IAM;
 - `IAM_MAIL_HOST` is the SMTP server that IAM will use to deliver
   notifications.
-
-For a detailed reference of all available configuration options, see [the
-configuration reference][config-ref].
  
 Deploying and starting the IAM service with the above configuration will give
 you an empty service with just one user registered, the `admin` user.
