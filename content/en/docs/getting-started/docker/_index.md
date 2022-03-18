@@ -27,7 +27,7 @@ $ docker run \
   --name iam-login-service \
   --net=iam -p 8080:8080 \
   --env-file=/path/to/iam-login-service/env \
-  -v /path/to/keystore.jwks:/keystore.jwks:ro \
+  -v /path/to/keystore.jks:/keystore.jks:ro \
   indigoiam/iam-login-service:{{< param version >}}
 ```
 
