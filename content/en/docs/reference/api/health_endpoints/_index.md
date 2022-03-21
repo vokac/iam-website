@@ -14,7 +14,7 @@ The health endpoints return:
 - HTTP status code 200 if everything is ok;
 - HTTP status code 500 if any health check fails.
 
-## `/health`
+## `/actuator/health`
 
 This is a general application health check endpoint which composes disk space
 and database health checks.
@@ -22,7 +22,7 @@ and database health checks.
 Examples.
 
 ```console
-$ curl -s https://iam.local.io/health | jq
+$ curl -s https://iam.local.io/actuator/health | jq
 {
   "status": "UP"
 }
@@ -31,7 +31,7 @@ $ curl -s https://iam.local.io/health | jq
 Sending basic authentication, the endpoint returns a response with more details:
 
 ```console
-$ curl -s -u $ADMINUSER:$ADMINPASSWORD https://iam.local.io/health | jq
+$ curl -s -u $ADMINUSER:$ADMINPASSWORD https://iam.local.io/actuator/health | jq
 {
   "status": "UP",
   "diskSpace": {
