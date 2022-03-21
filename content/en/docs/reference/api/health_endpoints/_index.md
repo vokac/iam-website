@@ -72,13 +72,13 @@ $ curl -u $ADMINUSER:$ADMINPASSWORD https://iam.local.io/health/mail | jq
 }
 ```
 
-## `/health/external`
+## `/actuator/health/externalConnectivity`
 
 This endpoint checks service connectivity to the Internet. By default, the
 endpoint triggers a check on the connectivity to Google.
 
 ```console
-$ curl -s https://iam.local.io/health/external | jq
+$ curl -s https://iam.local.io/actuator/health/externalConnectivity | jq
 {
   "status": "UP"
 }
@@ -86,7 +86,7 @@ $ curl -s https://iam.local.io/health/external | jq
 
 With an authenticated request, the external service URL is shown in the details.
 ```console
-$ curl -s -u $ADMINUSER:$ADMINPASSWORD https://iam.local.io/health/external | jq
+$ curl -s -u $ADMINUSER:$ADMINPASSWORD https://iam.local.io/actuator/health/externalConnectivity | jq
 {
   "status": "UP",
   "google": {
