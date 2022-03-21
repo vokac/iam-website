@@ -192,6 +192,32 @@ IAM_DB_TIME_BETWEEN_EVICTION_RUNS_MILLIS=5000
 IAM_DB_MIN_EVICTABLE_IDLE_TIME_MILLIS=60000
 ```
 
+## Redis configuration
+
+```bash
+## Redis server settings
+
+# Redis server hostname
+IAM_SPRING_REDIS_HOST=localhost
+
+# Redis server port
+IAM_SPRING_REDIS_PORT=6397
+
+# Redis server password
+IAM_SPRING_REDIS_PASSWORD=
+
+# Duration of an HTTP session
+IAM_SESSION_TIMEOUT_SECS=1800
+
+# Set to 'redis' in order to handle HTTP session
+# with an external Redis serice
+IAM_SPRING_SESSION_STORE_TYPE=none
+
+# If set to 'true' the status of the Redis service
+# will appear in the IAM Health check endpoint
+IAM_HEALTH_REDIS_PROBE_ENABLED=false
+```
+
 ## Google authentication settings
 
 ```bash
