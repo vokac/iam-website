@@ -7,7 +7,7 @@ The IAM Login Service exposes a set of health endpoints that can be used to
 monitor the status of the service.
 
 Health endpoints expose a different set of information depending on the user
-privileges; users with administrator privileges will see more details, while
+privileges; users with ACTUATOR role will see more details, while
 anonymous requests typically receive only a summary of the health status.
 
 The health endpoints return:
@@ -24,28 +24,50 @@ Examples.
 ```console
 $ curl -s https://iam.local.io/actuator/health | jq
 {
-  "status": "UP"
+  "status": "UP",
+  "components": {
+    "db": {
+      "status": "UP"
+    },
+    "diskSpace": {
+      "status": "UP"
+    },
+    "ping": {
+      "status": "UP"
+    }
+  }
 }
 ```
 
 Sending basic authentication, the endpoint returns a response with more details:
 
 ```console
-$ curl -s -u $ADMINUSER:$ADMINPASSWORD https://iam.local.io/actuator/health | jq
+$ curl -s -u $ACTUATORUSER:$ACTUATORPASSWORD https://iam.local.io/actuator/health | jq
 {
   "status": "UP",
-  "diskSpace": {
-    "status": "UP",
-    "total": 10725883904,
-    "free": 9872744448,
-    "threshold": 10485760
-  },
-  "db": {
-    "status": "UP",
-    "database": "MySQL",
-    "hello": 1
+  "components": {
+    "db": {
+      "status": "UP",
+      "details": {
+        "database": "H2",
+        "validationQuery": "isValid()"
+      }
+    },
+    "diskSpace": {
+      "status": "UP",
+      "details": {
+        "total": 502468108288,
+        "free": 320953249792,
+        "threshold": 10485760,
+        "exists": true
+      }
+    },
+    "ping": {
+      "status": "UP"
+    }
   }
 }
+
 ```
 
 ## `/health/mail`
@@ -75,7 +97,9 @@ $ curl -u $ADMINUSER:$ADMINPASSWORD https://iam.local.io/health/mail | jq
 ## `/actuator/health/externalConnectivity`
 
 This endpoint checks service connectivity to the Internet. By default, the
-endpoint triggers a check on the connectivity to Google.
+endpoint triggers a check on the connectivity to Google.  
+In order to enable the external connectivity check, set the environment variable 
+`IAM_HEALTH_EXTERNAL_CONNECTIVITY_PROBE_ENABLED` to true.
 
 ```console
 $ curl -s https://iam.local.io/actuator/health/externalConnectivity | jq
@@ -86,12 +110,11 @@ $ curl -s https://iam.local.io/actuator/health/externalConnectivity | jq
 
 With an authenticated request, the external service URL is shown in the details.
 ```console
-$ curl -s -u $ADMINUSER:$ADMINPASSWORD https://iam.local.io/actuator/health/externalConnectivity | jq
+$ curl -s -u $ACTUATORUSER:$ACTUATORPASSWORD https://iam.local.io/actuator/health/externalConnectivity | jq
 {
   "status": "UP",
-  "google": {
-    "status": "UP",
-    "location": "http://www.google.it"
+  "details": {
+    "endpoint": "https://www.google.it"
   }
 }
 ```
