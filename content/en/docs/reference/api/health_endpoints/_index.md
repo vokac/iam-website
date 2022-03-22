@@ -7,8 +7,15 @@ The IAM Login Service exposes a set of health endpoints that can be used to
 monitor the status of the service.
 
 Health endpoints expose a different set of information depending on the user
-privileges; users with ACTUATOR role will see more details, while
+privileges; users with Actuator role will see more details, while
 anonymous requests typically receive only a summary of the health status.
+
+The Actuator role has been introduced in IAM starting with version 1.8.0,
+in order to access the following resources
+* `/actuator/health`
+* `/actuator/info`
+
+which were previously available to users with administrator privileges.
 
 The health endpoints return:
 - HTTP status code 200 if everything is ok;
