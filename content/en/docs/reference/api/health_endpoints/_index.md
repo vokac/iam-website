@@ -70,13 +70,15 @@ $ curl -s -u $ACTUATORUSER:$ACTUATORPASSWORD https://iam.local.io/actuator/healt
 
 ```
 
-## `/health/mail`
+## `/actuator/health/mail`
 
 This endpoint monitors the connection to the SMTP server configured for the
-IAM Notification Service.
+IAM Notification Service.  
+In order to enable the SMTP server check, set the environment variable
+`IAM_HEALTH_MAIL_PROBE_ENABLED` to true.
 
 ```console
-$ curl -s https://iam.local.io/health/mail | jq
+$ curl -s https://iam.local.io/actuator/health/mail | jq
 {
   "status": "UP"
 }
@@ -84,11 +86,10 @@ $ curl -s https://iam.local.io/health/mail | jq
 
 With an authenticated request, the SMTP server details are returned:
 ```console
-$ curl -u $ADMINUSER:$ADMINPASSWORD https://iam.local.io/health/mail | jq
+$ curl -u $ACTUATORUSER:$ACTUATORPASSWORD https://iam.local.io/actuator/health/mail | jq
 {
   "status": "UP",
-  "mail": {
-    "status": "UP",
+  "details": {
     "location": "smtp.local.io:25"
   }
 }
