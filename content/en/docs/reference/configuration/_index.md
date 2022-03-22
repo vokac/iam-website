@@ -194,6 +194,12 @@ IAM_DB_MIN_EVICTABLE_IDLE_TIME_MILLIS=60000
 
 ## Redis configuration
 
+Starting with version 1.8.0, IAM supports storing HTTP session
+information in an external [redis][redis] server.
+
+This can be useful when deploying multiple replicas of the IAM
+service.
+
 ```bash
 ## Redis server settings
 
@@ -348,3 +354,4 @@ IAM_PRIVACY_POLICY_TEXT=Privacy policy
 ```
 
 [spring-boot-conf-rules]: https://docs.spring.io/spring-boot/docs/1.3.8.RELEASE/reference/html/boot-features-external-config.html
+[redis]: https://redis.io/
