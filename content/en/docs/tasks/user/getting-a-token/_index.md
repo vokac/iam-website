@@ -213,7 +213,7 @@ For nitty and gritty details on how the flow works, see the
 [RFC][oauth-device-code-flow].
 
 After having registered a client with the device flow enabled (see [client
-registration section](client-registration.md)), the device code flow can be
+registration section][client-registration-ref]), the device code flow can be
 used to obtain a token using a script like the one [here][dc-get-token-script]
 which does the following:
 
@@ -227,3 +227,4 @@ which does the following:
 [get-token-script]: https://gist.github.com/andreaceccanti/7d863db5ce3f43c74123a2cea8b8f9ff
 [dc-get-token-script]: https://gist.github.com/andreaceccanti/5b69323b89ce08321e7b5236de503600
 [oidc-agent]: https://github.com/indigo-dc/oidc-agent
+[client-registration-ref]: {{< ref "/docs/tasks/user/client-registration/" >}}
