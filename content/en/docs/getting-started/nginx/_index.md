@@ -11,6 +11,13 @@ have NGINX working as a reverse proxy for the IAM web application:
 
 ```nginx
 server {
+  listen 80;
+  listen [::]:80;
+  server_name _;
+  return 301 https://$host$request_uri;
+}
+
+server {
   listen        443 ssl;
   server_name   YOUR_HOSTNAME_HERE;
   access_log   /var/log/nginx/iam.access.log  combined;
@@ -21,12 +28,13 @@ server {
   ssl_certificate_key  /path/to/your/ssl/key.pem;
 
   location / {
-    proxy_pass              THE_IAM_APP_HOSTNAME_HERE:8080;
+    proxy_pass              http://THE_IAM_APP_HOSTNAME_HERE:8080;
     proxy_set_header        X-Real-IP $remote_addr;
     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header        X-Forwarded-Proto https;
     proxy_set_header        Host $http_host;
   }
+}
 ```
 
 ## X.509 client authentication

@@ -20,7 +20,7 @@ IAM_HOST=iam.local.io
 IAM_BASE_URL=https://iam.local.io
 IAM_ISSUER=https://iam.local.io
 IAM_USE_FORWARDED_HEADERS=true
-IAM_KEY_STORE_LOCATION=file:/iam-keystore.jwks
+IAM_KEY_STORE_LOCATION=file:/keystore.jwks
 IAM_DB_HOST=db
 IAM_DB_NAME=iam
 IAM_DB_USERNAME=iam
@@ -44,7 +44,7 @@ and has the following meaning:
 - `IAM_USE_FORWARDED_HEADERS` tells the IAM that whether it lives behind a reverse
   proxy (i.e., NGINX); in production the value is typically `true`;
 - `IAM_KEY_STORE_LOCATION` is the location of the JSON Web keystore generated
-  as explained [here](docs/getting-started/jwk);
+  as explained [here];
 - `IAM_DB_*` are variables used to set the database endpoint and provide
   database access credentials;
 - `IAM_NOTIFICATION_FROM` sets the sender of administrative notification sent
@@ -76,3 +76,4 @@ button from the admin home page, as shown in the following picture:
 
 
 [config-ref]: {{< ref "/docs/reference/configuration" >}}
+[here]: {{< ref "/docs/getting-started/jwk" >}}

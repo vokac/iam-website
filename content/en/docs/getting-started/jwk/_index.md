@@ -22,6 +22,8 @@ Build the code with:
 ```shell
 mvn package
 ```
+Maven 3.6.x or greater supporting Java 11 is required. 
+
 You can then generate a key with the following command:
 
 ```shell
@@ -49,6 +51,6 @@ Full key:
 ```
 
 Save the output of the above command (minus the `Full key:` initial text) in a
-file, e.g. `iam-keystore.jwks`.
+file, e.g. `keystore.jwks`.
 
 [jwk-generator]: https://github.com/mitreid-connect/json-web-key-generator
