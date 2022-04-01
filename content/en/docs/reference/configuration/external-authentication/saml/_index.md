@@ -50,7 +50,7 @@ keytool -importkeystore -destkeystore self-signed.jks \
 ```
 
 During the above process you will be asked to provide a p12 export password and
-a keystore password. Use the same password, at least 6 characters long,
+a keystore password. **Use the same password**, at least 6 characters long,
 otherwise it will not work for the java keystore.
 
 You can list the contents of the keystore with the following command:
@@ -186,6 +186,33 @@ IAM_SAML_IDP_ENTITY_ID_WHITELIST="https://idp.infn.it/saml2/idp/metadata.php"
 To limit authentication only to IdPs that are [SIRFTI][sirtfi]-compliant, set
 the the `IAM_SAML_METADATA_REQUIRE_SIRTFI` environment variable to true.
 
+
+## Joining a SAML federation
+
+An Indigo IAM instance can join a SAML federation as a service provider (SP).
+To join a feaderation you need to follow the following steps:
+
+* Configure the `saml` profile in IAM
+* Register the Indigo IAM instance into the federation, following the federation
+instructions (generally involves connecting to a registration portal to 
+declare the SP)
+* Wait for the federation metadata to be updated at the federation IdPs. This
+typically involves a 12h delay.
+* Check if login in IAM works successfully through the federation: note that it
+will not work before the federation IdPs have updated their metadata. If the
+error persists after the delay, contact your federation or IdP support.
+
+When registering the Indigo IAM SP, there are a few critical parameters to supply:
+
+* Assertion Consumer Service (ACS), consisting of 3 parameters:
+  * Binding: must be `HTTP Post`
+  * URL: it is the instance URL + `/saml/SSO`, e.g. `https://iam.example.com/saml/SSO`
+  * Index: should be set to 0
+* X509 SAML certificate: the generated `self-signed` certificate
+
+Other, generally optional, parameters include the requested attribute. It is a good
+practice to declare as mandatory one of the attribute listed in 
+`IAM_SAML_ID_RESOLVERS`.
 
 ## Customizing SAML login button text
 
