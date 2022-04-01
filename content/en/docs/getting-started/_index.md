@@ -36,9 +36,6 @@ You will also need to choose whether you want to deploy you service as a
 [docker container](docker) (recommended) or install from
 [packages](packages).
 
-In case you chose to install from [packages](packages) you can have a look
-at the [IAM puppet module to deploy and configure the service](puppet-module).
-
 And finally, you will have to setup a minimal IAM configuration and change the
 administrator password for the newly configured IAM service; more on this
 [in the basic configuration section](basic_setup).
