@@ -192,6 +192,23 @@ IAM_DB_TIME_BETWEEN_EVICTION_RUNS_MILLIS=5000
 IAM_DB_MIN_EVICTABLE_IDLE_TIME_MILLIS=60000
 ```
 
+## Test Client configuration
+
+```bash
+# Public identifier for client application.
+IAM_CLIENT_ID=client
+
+# Client application's own password.
+IAM_CLIENT_SECRET=secret
+
+# Default scopes allowed to the client application (optional).
+IAM_CLIENT_SCOPES=openid profile email
+
+# Use forwarded headers from reverse proxy. Set this to native when deploying the
+# service behind a reverse proxy.
+IAM_CLIENT_FORWARD_HEADERS_STRATEGY=native
+```
+
 ## Google authentication settings
 
 ```bash
