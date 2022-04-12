@@ -77,9 +77,9 @@ IAM_X509_TRUST_ANCHORS_DIR=/etc/grid-security/certificates
 # How frequently (in seconds) should trust anchors be refreshed
 IAM_X509_TRUST_ANCHORS_REFRESH=14400
 
-# Use forwarded headers from reverse proxy. Set this to true when deploying the
+# Use forwarded headers from reverse proxy. Set this to native when deploying the
 # service behind a reverse proxy.
-IAM_USE_FORWARDED_HEADERS=false
+IAM_FORWARD_HEADERS_STRATEGY=none
 
 ## Tomcat embedded container settings
 
