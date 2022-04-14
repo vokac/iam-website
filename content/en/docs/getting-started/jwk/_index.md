@@ -25,7 +25,7 @@ mvn package
 You can then generate a key with the following command:
 
 ```shell
-java -jar target/json-web-key-generator-0.4-SNAPSHOT-jar-with-dependencies.jar \
+java -jar target/json-web-key-generator-0.9-SNAPSHOT-jar-with-dependencies.jar \
   -t RSA -s 1024 -S -i rsa1
 
 
