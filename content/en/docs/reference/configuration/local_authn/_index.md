@@ -4,7 +4,7 @@ linkTitle: "Local authentication"
 weight: 7
 ---
 
-Starting with version 1.6.0, IAM introduces the ability to limit or disable
+IAM has the ability to limit or disable
 authentication with local IAM credentials, so that external, brokered
 authentication is required.
 
@@ -21,8 +21,8 @@ iam:
     login-page-visibility: hidden 
 ```
 
-Local authentication settings are configured providing a custom configuration
-file, as described
-[here][custom-config-file]
+Local authentication settings are configured by defining the following variables in the environment
+file:
 
-[custom-config-file]: {{< ref "/docs/reference/configuration/#overriding-default-configuration-templates" >}}
+* `IAM_LOCAL_AUTHN_ENABLED_FOR` with valid values for `enabled-for` property
+* ``IAM_LOCAL_AUTHN_LOGIN_PAGE_VISIBILITY` with valid values for `login-page-visibility` property
