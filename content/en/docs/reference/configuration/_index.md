@@ -93,11 +93,11 @@ IAM_TOMCAT_ACCESS_LOG_DIRECTORY=/tmp
 
 # Sets the username of the user allowed to have privileged access to actuator
 # endpoints
-IAM_ACTUATOR_USER_USERNAME=whatever
+IAM_ACTUATOR_USER_USERNAME=secret
 
 # Sets the password of the user allowed to have privileged access to actuator
 # endpoints
-IAM_ACTUATOR_USER_PASSWORD=whatever
+IAM_ACTUATOR_USER_PASSWORD=secret
 
 ## Local resources configuration
 
@@ -197,8 +197,8 @@ IAM_DB_MIN_EVICTABLE_IDLE_TIME_MILLIS=60000
 Starting with version 1.8.0, IAM supports storing HTTP session
 information in an external [redis][redis] server.
 
-This can be useful when deploying multiple replicas of the IAM
-service.
+This can be useful when [deploying multiple replicas of the IAM
+service](../../../docs/tasks/deployment/ha).
 
 ```bash
 ## Redis server settings
@@ -209,14 +209,15 @@ IAM_SPRING_REDIS_HOST=localhost
 # Redis server port
 IAM_SPRING_REDIS_PORT=6397
 
-# Redis server password
-IAM_SPRING_REDIS_PASSWORD=
+# Redis server password.
+# Leave it empty in case the server does not require any password
+IAM_SPRING_REDIS_PASSWORD=secret
 
 # Duration of an HTTP session
 IAM_SESSION_TIMEOUT_SECS=1800
 
 # Set to 'redis' in order to handle HTTP session
-# with an external Redis serice
+# with an external Redis service
 IAM_SPRING_SESSION_STORE_TYPE=none
 
 # If set to 'true' the status of the Redis service
