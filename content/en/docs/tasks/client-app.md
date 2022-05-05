@@ -7,7 +7,7 @@ description: >
 
 IAM Test Client is a simple web application that demonstrates the use of the OpenID Connect client code and configuration.
 
-It lives at ```https://your-IAM-instance/iam-test-client```.
+It lives at `https://your-IAM-instance/iam-test-client`.
 
 ![Test Client App](/images/test-client.png)
 
