@@ -92,8 +92,8 @@ after a `mvn package`.
 
 For more details on the image build scripts see the following folders:
 
-- [iam-login-service](iam-login-service/docker)
-- [iam-test-client](iam-test-client/docker)
+- [iam-login-service][iam-login-service/docker]
+- [iam-test-client][iam-test-client/docker]
 
 ## Related projects
 
@@ -102,5 +102,7 @@ This project builds upon the following projects/technologies:
 - [Spring Boot][spring-boot]
 - [MitreID OpenID-Connect client and server libraries][mitre]
 
+[iam-login-service/docker]: https://github.com/indigo-iam/iam/tree/master/iam-login-service/docker
+[iam-test-client/docker]: https://github.com/indigo-iam/iam/tree/master/iam-test-client/docker
 [mitre]: https://github.com/mitreid-connect/OpenID-Connect-Java-Spring-Server
 [spring-boot]: http://projects.spring.io/spring-boot/
