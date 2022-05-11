@@ -69,6 +69,10 @@ IAM_ISSUER=http://${IAM_HOST}:8080
 # verify token signatures
 IAM_KEY_STORE_LOCATION=
 
+# HTTP caching header setting public key lifetime (in seconds).
+# The recommended lifetime according to the WLCG profile* is 6 hours
+IAM_JWK_CACHE_LIFETIME=21600
+
 # IAM will look for trust anchors in this directory.  These trust anchors are
 # needed for TLS operations where the IAM acts as a client (i.e., to
 # authenticate to remote SAML Identity providers)
@@ -107,6 +111,7 @@ IAM_LOCAL_RESOURCES_ENABLE=false
 # Sets the directory that contains the local resources that should be exposed
 IAM_LOCAL_RESOURCES_LOCATION=file:/indigo-iam/local-resources
 ```
+(*) More information [here][wlcg-profile].
 
 ## Organization configuration
 
@@ -322,3 +327,4 @@ IAM_PRIVACY_POLICY_TEXT=Privacy policy
 ```
 
 [spring-boot-conf-rules]: https://docs.spring.io/spring-boot/docs/1.3.8.RELEASE/reference/html/boot-features-external-config.html
+[wlcg-profile]: https://github.com/WLCG-AuthZ-WG/common-jwt-profile/blob/master/profile.md#token-validation
