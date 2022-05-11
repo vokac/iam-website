@@ -19,7 +19,7 @@ Currently the following profiles are defined:
 | prod           | no                  | This is the profile you should enable when using IAM              |
 | h2-test        | yes                 | Enables h2 in-memory database, useful for development and testing |
 | mysql-test     | no                  | Like h2-test, but used to develop against a MySQL database        |
-| google         | no                  | Enables Google authentication                                     |
+| oidc           | no                  | Enables Google authentication                                     |
 | saml           | no                  | Enables SAML authentication                                       |
 | registration   | yes                 | Enables user registration and reset password functionalities      |
 
@@ -28,7 +28,7 @@ property when starting the IAM service. This can be done, using the official
 IAM docker image, by setting the IAM_JAVA_OPTS environment variable as follows:
 
 ```bash
-IAM_JAVA_OPTS="-Dspring.profiles.active=prod,google,saml"
+IAM_JAVA_OPTS="-Dspring.profiles.active=prod,oidc,saml"
 ```
 
 ## Overriding default configuration templates
