@@ -93,7 +93,7 @@ Here a [configMap][config-map] for the `login-service-env` file is used.
 You can set there the [Configuration properties](../../../reference/configuration/#redis-configuration)
 used to enable Redis. The minimal ones required, for a password less Redis service are
 
-```
+```bash
 IAM_SPRING_SESSION_STORE_TYPE=redis
 IAM_SPRING_REDIS_HOST=redis.example
 ```

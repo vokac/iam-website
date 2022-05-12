@@ -7,7 +7,7 @@ The IAM Login Service exposes a set of health endpoints that can be used to
 monitor the status of the service.
 
 Health endpoints expose a different set of information depending on the user
-privileges; users with Actuator role will see more details, while
+privileges; requests from the *Actuator* user will see more details, while
 anonymous requests typically receive only a summary of the health status.
 
 The Actuator role has been introduced in IAM starting with version 1.8.0,
@@ -15,7 +15,10 @@ in order to access the following resources
 * `/actuator/health`
 * `/actuator/info`
 
-which were previously available to users with administrator privileges.
+without being an IAM user and it is useful for deployment purposes.  
+The Actuator user credentials can be configured with the environment variables
+`IAM_ACTUATOR_USER_USERNAME` and `IAM_ACTUATOR_USER_PASSWORD`,
+as explained in [Configuration](../../configuration/#basic-service-configuration).
 
 The health endpoints return:
 - HTTP status code 200 if everything is ok;
@@ -49,7 +52,7 @@ $ curl -s https://iam.local.io/actuator/health | jq
 Sending basic authentication, the endpoint returns a response with more details:
 
 ```console
-$ curl -s -u $ACTUATORUSER:$ACTUATORPASSWORD https://iam.local.io/actuator/health | jq
+$ curl -s -u $IAM_ACTUATOR_USER_USERNAME:$IAM_ACTUATOR_USER_PASSWORD https://iam.local.io/actuator/health | jq
 {
   "status": "UP",
   "components": {
@@ -93,7 +96,7 @@ $ curl -s https://iam.local.io/actuator/health/mail | jq
 
 With an authenticated request, the SMTP server details are returned:
 ```console
-$ curl -u $ACTUATORUSER:$ACTUATORPASSWORD https://iam.local.io/actuator/health/mail | jq
+$ curl -u $IAM_ACTUATOR_USER_USERNAME:$IAM_ACTUATOR_USER_PASSWORD https://iam.local.io/actuator/health/mail | jq
 {
   "status": "UP",
   "details": {
@@ -118,7 +121,7 @@ $ curl -s https://iam.local.io/actuator/health/externalConnectivity | jq
 
 With an authenticated request, the external service URL is shown in the details.
 ```console
-$ curl -s -u $ACTUATORUSER:$ACTUATORPASSWORD https://iam.local.io/actuator/health/externalConnectivity | jq
+$ curl -s -u $IAM_ACTUATOR_USER_USERNAME:$IAM_ACTUATOR_USER_PASSWORD https://iam.local.io/actuator/health/externalConnectivity | jq
 {
   "status": "UP",
   "details": {

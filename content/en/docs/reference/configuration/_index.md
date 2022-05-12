@@ -93,7 +93,7 @@ IAM_TOMCAT_ACCESS_LOG_DIRECTORY=/tmp
 
 # Sets the username of the user allowed to have privileged access to actuator
 # endpoints
-IAM_ACTUATOR_USER_USERNAME=secret
+IAM_ACTUATOR_USER_USERNAME=user
 
 # Sets the password of the user allowed to have privileged access to actuator
 # endpoints
