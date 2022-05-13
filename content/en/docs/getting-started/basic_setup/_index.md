@@ -44,7 +44,7 @@ and has the following meaning:
 - `IAM_FORWARD_HEADERS_STRATEGY` tells the IAM that whether it lives behind a reverse
   proxy (i.e., NGINX); in production the value is typically `native`;
 - `IAM_KEY_STORE_LOCATION` is the location of the JSON Web keystore generated
-  as explained [here];
+  as explained [here][jwk-ref];
 - `IAM_DB_*` are variables used to set the database endpoint and provide
   database access credentials;
 - `IAM_NOTIFICATION_FROM` sets the sender of administrative notification sent
@@ -73,4 +73,5 @@ button from the admin home page, as shown in the following picture:
 
 
 [config-ref]: {{< ref "/docs/reference/configuration" >}}
-[here]: {{< ref "/docs/getting-started/jwk" >}}
+[jwk-ref]: {{< ref "/docs/getting-started/jwk" >}}
+

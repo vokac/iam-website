@@ -97,11 +97,11 @@ IAM_TOMCAT_ACCESS_LOG_DIRECTORY=/tmp
 
 # Sets the username of the user allowed to have privileged access to actuator
 # endpoints
-IAM_SUPERUSER_USERNAME=whatever
+IAM_ACTUATOR_USER_USERNAME=user
 
 # Sets the password of the user allowed to have privileged access to actuator
 # endpoints
-IAM_SUPERUSER_PASSWORD=whatever
+IAM_ACTUATOR_USER_PASSWORD=secret
 
 ## Local resources configuration
 
@@ -195,6 +195,39 @@ IAM_DB_TIME_BETWEEN_EVICTION_RUNS_MILLIS=5000
 # The minimum amount of time a connection may be idle in the pool
 # before it is considered for eviction (in msec)
 IAM_DB_MIN_EVICTABLE_IDLE_TIME_MILLIS=60000
+```
+
+## Redis configuration
+
+Starting with version 1.8.0, IAM supports storing HTTP session
+information in an external [redis][redis] server.
+
+This can be useful when [deploying multiple replicas of the IAM
+service](../../../docs/tasks/deployment/ha).
+
+```bash
+## Redis server settings
+
+# Redis server hostname
+IAM_SPRING_REDIS_HOST=localhost
+
+# Redis server port
+IAM_SPRING_REDIS_PORT=6397
+
+# Redis server password.
+# Leave it empty in case the server does not require any password
+IAM_SPRING_REDIS_PASSWORD=secret
+
+# Duration of an HTTP session
+IAM_SESSION_TIMEOUT_SECS=1800
+
+# Set to 'redis' in order to handle HTTP session
+# with an external Redis service
+IAM_SPRING_SESSION_STORE_TYPE=none
+
+# If set to 'true' the status of the Redis service
+# will appear in the IAM Health check endpoint
+IAM_HEALTH_REDIS_PROBE_ENABLED=false
 ```
 
 ## Google authentication settings
@@ -327,4 +360,5 @@ IAM_PRIVACY_POLICY_TEXT=Privacy policy
 ```
 
 [spring-boot-conf-rules]: https://docs.spring.io/spring-boot/docs/1.3.8.RELEASE/reference/html/boot-features-external-config.html
+[redis]: https://redis.io/
 [wlcg-profile]: https://github.com/WLCG-AuthZ-WG/common-jwt-profile/blob/master/profile.md#token-validation
