@@ -46,7 +46,7 @@ jobs:
       - name: build & deploy website
         run: |
           ls -al && pwd
-          git config --global user.email "andrea.ceccanti@gmail.com"
-          git config --global user.name "Andrea Ceccanti"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
           pushd source && npm ci && HUGO_OPTS="-F" TARGET_DIR="${GITHUB_WORKSPACE}/target" ./deploy.sh && popd
           pushd target && git add . && git commit -m "${{ github.event.head_commit.message }}" && git push

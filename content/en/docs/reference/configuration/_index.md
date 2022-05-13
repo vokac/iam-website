@@ -19,7 +19,7 @@ Currently the following profiles are defined:
 | prod           | no                  | This is the profile you should enable when using IAM              |
 | h2-test        | yes                 | Enables h2 in-memory database, useful for development and testing |
 | mysql-test     | no                  | Like h2-test, but used to develop against a MySQL database        |
-| google         | no                  | Enables Google authentication                                     |
+| oidc           | no                  | Enables Google authentication                                     |
 | saml           | no                  | Enables SAML authentication                                       |
 | registration   | yes                 | Enables user registration and reset password functionalities      |
 
@@ -28,7 +28,7 @@ property when starting the IAM service. This can be done, using the official
 IAM docker image, by setting the IAM_JAVA_OPTS environment variable as follows:
 
 ```bash
-IAM_JAVA_OPTS="-Dspring.profiles.active=prod,google,saml"
+IAM_JAVA_OPTS="-Dspring.profiles.active=prod,oidc,saml"
 ```
 
 ## Overriding default configuration templates
@@ -69,6 +69,10 @@ IAM_ISSUER=http://${IAM_HOST}:8080
 # verify token signatures
 IAM_KEY_STORE_LOCATION=
 
+# HTTP caching header setting public key lifetime (in seconds).
+# The recommended lifetime according to the WLCG profile* is 6 hours
+IAM_JWK_CACHE_LIFETIME=21600
+
 # IAM will look for trust anchors in this directory.  These trust anchors are
 # needed for TLS operations where the IAM acts as a client (i.e., to
 # authenticate to remote SAML Identity providers)
@@ -77,9 +81,9 @@ IAM_X509_TRUST_ANCHORS_DIR=/etc/grid-security/certificates
 # How frequently (in seconds) should trust anchors be refreshed
 IAM_X509_TRUST_ANCHORS_REFRESH=14400
 
-# Use forwarded headers from reverse proxy. Set this to true when deploying the
+# Use forwarded headers from reverse proxy. Set this to native when deploying the
 # service behind a reverse proxy.
-IAM_USE_FORWARDED_HEADERS=false
+IAM_FORWARD_HEADERS_STRATEGY=none
 
 ## Tomcat embedded container settings
 
@@ -107,6 +111,7 @@ IAM_LOCAL_RESOURCES_ENABLE=false
 # Sets the directory that contains the local resources that should be exposed
 IAM_LOCAL_RESOURCES_LOCATION=file:/indigo-iam/local-resources
 ```
+(*) More information [here][wlcg-profile].
 
 ## Organization configuration
 
@@ -356,3 +361,4 @@ IAM_PRIVACY_POLICY_TEXT=Privacy policy
 
 [spring-boot-conf-rules]: https://docs.spring.io/spring-boot/docs/1.3.8.RELEASE/reference/html/boot-features-external-config.html
 [redis]: https://redis.io/
+[wlcg-profile]: https://github.com/WLCG-AuthZ-WG/common-jwt-profile/blob/master/profile.md#token-validation

@@ -59,9 +59,9 @@ client, IAM falls back to the default profile configured for the IAM instance.
 
 MitreID **System Scopes** can be used to control access to profile selection.
 
-For example, by setting a profile scope as `restricted`, such scope will not be
-available to dynamically registered clients and can only be assigned to clients
-by IAM administrators.
+The scopes `iam`, `wlcg` and `aarc` used to select the JWT profile are not available in IAM
+by default; an administrator has to add all of them manually, as described in the
+in [System Scopes documentation][system-scopes].
 
 ## Supported JWT profiles
 
@@ -102,7 +102,8 @@ This profile is assigned to clients using the `wlcg` scope.
 #### Requesting groups with the WLCG profile
 
 When the WLCG profile is used, groups are not automatically included in access
-tokens and ID tokens, but can be requested using the `wlcg.groups` scope,
+tokens and ID tokens, but can be requested using the `wlcg.groups` scope
+(which has to be added among the [System Scopes][system-scopes]),
 following the rules described in the [WLCG
 profile](https://github.com/WLCG-AuthZ-WG/CommonJWTProfile/blob/master/profile.md#scope-based-group-selection).
 
@@ -111,8 +112,8 @@ profile](https://github.com/WLCG-AuthZ-WG/CommonJWTProfile/blob/master/profile.m
 Optional groups are groups whose membership is only asserted in tokens on
 explicit request coming from a user.
 
-In order to configure a IAM group as an optional group, add the
-`wlcg.optional-group` label to the group.
+In order to configure a IAM group as an optional group,
+add the `wlcg.optional-group` label to the group.
 
 
 ### The AARC profile
@@ -130,5 +131,6 @@ All the mapping rules are described in the [White Paper for implementation mappi
 
 This profile is assigned to clients using the `aarc` scope.
 
+[system-scopes]: {{< ref "docs/reference/configuration/system-scopes" >}}
 [wlcg-profile]: https://zenodo.org/record/3460258
 [aarc-g002]: https://aarc-project.eu/guidelines/aarc-g002/

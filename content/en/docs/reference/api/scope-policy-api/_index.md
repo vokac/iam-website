@@ -4,9 +4,9 @@ title: Scope Policy API
 
 In OpenID Connect and OAuth, [scopes][oauth-scopes] are used to determine the
 privileges granted to a client application for a given session. For example,
-the `openid` and `profile` scope are used to obtain access to identity
+the `openid` and `profile` scopes are used to obtain access to identity
 information about a user, but applications can define their own scopes to
-implement domain-specifc authorization (e.g., the WLCG `storage.read`  and
+implement domain-specific authorization (e.g., the WLCG `storage.read`  and
 `storage.modify` scopes are examples of domain-specific OAuth scopes).
 
 IAM implements two levels of access control on OAuth scopes:
@@ -57,7 +57,7 @@ An example scope policy is given below:
   }
 ```
 
-The policy above is a `PERMIT` policy that allow access to all the scopes to
+The policy above is a `PERMIT` policy that allows access to all the scopes to
 any account, as clarified by the policy `description`.
 
 In the policy, the `account` and `group` selector are not specified, which
@@ -123,7 +123,7 @@ to any authenticated user. The second policy would instead allow access to
 `compute.*` scopes only to members of the `wlcg/pilot` group (again, as written
 in the policy `description`).
 
-The two policy can work together because the IAM policy engine evaluates the
+The two policies can work together because the IAM policy engine evaluates the
 policy in a specific order: account-level policies are applied first, then
 group-level policies are applied and finally policies that are not bound to any
 specific account or group are applied. This means that a policy defined to
@@ -148,7 +148,7 @@ IAM currently supports three scope matching algorithms:
   scopes to scopes allowed by the client configuration or by the scope
   policies;
 
-- `REGEXP`: which uses a regular expression evaluation when comparting
+- `REGEXP`: which uses a regular expression evaluation when comparing
   requested scopes to scopes allowed by the client configuration or scope
   policies; 
 
@@ -246,7 +246,7 @@ $ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -H "
 **Code**: `200 OK`
 
 **Content**: An array of JSON representations for the scope policies defined in
-the orgazionation
+the organization
 
 ```json
 [{

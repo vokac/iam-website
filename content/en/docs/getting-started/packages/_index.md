@@ -67,21 +67,33 @@ To access the service logs, use the following command:
 $ sudo journalctl -fu iam-login-service
 ```
 
-## Automated provisioning with Puppet
+### Deployment Tips
+In headless servers, running `haveged` daemon is recommended to generate more entropy.
+Before running the IAM login service, check the available entropy with:
 
+```shell
+$ cat /proc/sys/kernel/random/entropy_avail
+```
 
-The IAM login service Puppet module can be  found [here][puppet-iam-repo].
-The module configures the IAM Login Service packages installation,
-configuration and the automatic generation of the JWK keystore.
+If the obtained value is less than 1000, then `haveged` daemon is mandatory.
 
-The setup of the MySQL database used by the service as well as the setup of the
-reverse proxy are **not covered** by this module.
+Install EPEL repository:
 
-However, the module provides an example of setup of both the Login Service and
-NginX as reverse proxy, using the official NginX Puppet module.
+```shell
+$ sudo yum install -y epel-release
+```
 
-For more detailed information about the Indigo IAM Puppet module usage, see the
-documentation in the [Github repository][puppet-iam-repo].
+Install Haveged:
 
-[puppet-iam-repo]: https://github.com/indigo-iam/puppet-indigo-iam
+```shell
+$ sudo yum install -y haveged
+```
+
+Enable and run the `haveged` daemon with:
+
+```shell
+$ sudo systemctl enable haveged
+$ sudo systemctl start haveged
+```
+
 [iam-pkg-repo]: https://indigo-iam.github.io/repo
