@@ -43,7 +43,7 @@ Parameters:
 |:------------:|-------------|
 | `count`<br/>**integer**| Specifies the desired maximum number of query results per page. |
 | `startIndex`<br/>**integer**| The 1-based index of the first query result. |
-| `userId`<br/>**string**| Filters by userId. |
+| `userId`<br/>**string**| Filters by userName. |
 | `clientId`<br/>**string**| Filters by clientId. |
 
 Example:
