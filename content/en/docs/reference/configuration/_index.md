@@ -52,10 +52,10 @@ scenarios not served by the default templates.
 ## Basic service configuration 
 
 ```bash
-# The IAM service will list for requests on this host.
+# The IAM service will list for requests on this host
 IAM_HOST=localhost
 
-# The IAM service webapp will bind on this port.
+# The IAM service webapp will bind on this port
 IAM_PORT=8080
 
 # The IAM web application base URL
@@ -73,7 +73,7 @@ IAM_KEY_STORE_LOCATION=
 # The recommended lifetime according to the WLCG profile* is 6 hours
 IAM_JWK_CACHE_LIFETIME=21600
 
-# IAM will look for trust anchors in this directory.  These trust anchors are
+# IAM will look for trust anchors in this directory. These trust anchors are
 # needed for TLS operations where the IAM acts as a client (i.e., to
 # authenticate to remote SAML Identity providers)
 IAM_X509_TRUST_ANCHORS_DIR=/etc/grid-security/certificates
@@ -82,7 +82,7 @@ IAM_X509_TRUST_ANCHORS_DIR=/etc/grid-security/certificates
 IAM_X509_TRUST_ANCHORS_REFRESH=14400
 
 # Use forwarded headers from reverse proxy. Set this to native when deploying the
-# service behind a reverse proxy.
+# service behind a reverse proxy
 IAM_FORWARD_HEADERS_STRATEGY=none
 
 ## Tomcat embedded container settings
@@ -116,7 +116,7 @@ IAM_LOCAL_RESOURCES_LOCATION=file:/indigo-iam/local-resources
 ## Organization configuration
 
 ```bash
-# The name of the organization managed by this IAM instance.
+# The name of the organization managed by this IAM instance
 IAM_ORGANISATION_NAME=indigo-dc
 
 # URL of logo image used in the IAM dashboard (by default the INDIGO-Datacloud
@@ -200,17 +200,17 @@ IAM_DB_MIN_EVICTABLE_IDLE_TIME_MILLIS=60000
 ## Test Client configuration
 
 ```bash
-# Public identifier for client application.
+# Public identifier for client application
 IAM_CLIENT_ID=client
 
-# Client application's own password.
+# Client application's own password
 IAM_CLIENT_SECRET=secret
 
-# Default scopes allowed to the client application (optional).
+# Default scopes allowed to the client application (optional)
 IAM_CLIENT_SCOPES=openid profile email
 
 # Use forwarded headers from reverse proxy. Set this to native when deploying the
-# service behind a reverse proxy.
+# service behind a reverse proxy
 IAM_CLIENT_FORWARD_HEADERS_STRATEGY=native
 ```
 
