@@ -210,8 +210,8 @@ IAM_CLIENT_SECRET=secret
 IAM_CLIENT_SCOPES=openid profile email
 
 # Use forwarded headers from reverse proxy. Set this to native when deploying the
-# service behind a reverse proxy, otherwise ignore it
-IAM_CLIENT_FORWARD_HEADERS_STRATEGY=native
+# service behind a reverse proxy
+IAM_CLIENT_FORWARD_HEADERS_STRATEGY=none
 ```
 
 ## Redis configuration
