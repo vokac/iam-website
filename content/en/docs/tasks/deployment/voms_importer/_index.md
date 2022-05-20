@@ -5,20 +5,9 @@ description: >
   Instructions on how to deploy the IAM VOMS importer script
 ---
 
-## VOMS versus importer 
+## The VOMS-importer script
 
-The transition from X.509 to tokens takes time, therefore **IAM was designed to be backward-compatible with our existing infrastructure.** 
-
-IAM provides a VOMS endpoint that **can issue VOMS credentials understood by existing clients and libraries**.
-* VOMS clients $>$= 2.0.16
-
-The [VOMS importer](https://github.com/indigo-iam/voms-importer/) migration script has been developed to import users from VOMS to IAM:
-* users will **NOT** have to re-register in mass to IAM, and their IAM account will be automagically linked to their CERN account;
-* the script will keep IAM in sync with the VOMS instances until the VO registration process is migrated to IAM.
-
-At some point **IAM will be the only authoritative VOMS server for the infrastructure**.
-
-### The VOMS importer script
+The [VOMS importer](https://github.com/indigo-iam/voms-importer/) migration script has been developed to import users from VOMS to IAM. The script keeps IAM in sync with the VOMS instances until the VO registration process is migrated to IAM.
 
 The migratition of VO structure and users from an existing VOMS VO server means to consider the following information:
 * VOMS Groups
@@ -30,30 +19,26 @@ The migratition of VO structure and users from an existing VOMS VO server means 
   * Generic attributes
 
 The script requires:
-* VOMS Admin v. 3.8.0, IAM $>$= v. 1.7.0
+* VOMS Admin version 3.8.0
+* IAM version $>$= 1.7.0
 * VOMS proxy with admin privileges on the VOMS VO
 * access token with admin privileges on the IAM VO
 
 ### VOMS Groups and roles migration
 
-To import groups in IAM:
-* /atlas/production -> atlas/production
-
-To import roles as IAM optional groups:
-* /atlas/Role=VO-Admin -> atlas/VO-Admin
+In this case, to import groups in IAM, you can turn `/atlas/production` into `atlas/production`. To import roles as IAM optional groups, you have to turn `/atlas/Role=VO-Admin` into `atlas/VO-Admin`.
 
 **Groups and roles are imported only if not already present in IAM.**
 
 ### Users migration
 
-Only **active VOMS users** are migrated. Furthermore, do not expect that a user suspended by a VO Admin in VOMS is suspended also in IAM:
-* since IAM is also integrated with the HR db, the HR check will ensure users are suspended/removed from the VO when experiment membership is no longer valid.
+Only **active VOMS users** are migrated. Furthermore, you do not expect that a user, suspended by a VO Admin in VOMS, is also suspended in IAM. Since IAM is also integrated with the Human Resource (HR) database, the HR check will ensure that users are suspended/removed from the VO when experiment membership is no longer valid.
 
-The importer script generates a username for the IAM account (i.e., VOMS accounts did not have username): currently `user.<voms userid>`, there is the plan to use CERN username instead.
+The importer script generates a username for the IAM account (i.e., VOMS accounts did not have username): currently `user.<voms userid>`. However, there is the plan to use CERN username instead.
 
 ### CERN SSO automatic linking
 
-The importer script can be configured to automatically link the imported account to the CERN SSO identity in two ways:
+The importer script can be configured to automatically link the imported account to the CERN SSO identity in two ways: 
 1. using the nickname VOMS account generic attribute
 2. resolving the CERN username from the CERN LDAP
 
