@@ -7,7 +7,7 @@ description: >
 
 ## VOMS versus importer 
 
-The transition from X.509 to tokens will take time so **IAM was designed to be backward-compatible with our existing infrastructure.**
+The transition from X.509 to tokens takes time, therefore **IAM was designed to be backward-compatible with our existing infrastructure.** 
 
 IAM provides a VOMS endpoint that **can issue VOMS credentials understood by existing clients and libraries**.
 * VOMS clients $>$= 2.0.16
