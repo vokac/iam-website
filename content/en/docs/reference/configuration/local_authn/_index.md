@@ -20,17 +20,15 @@ iam:
     # possible values: hidden, visible
     login-page-visibility: hidden 
 ```
-
-Local authentication settings are configured by defining the following variables in the environment
-file:
-
-* `IAM_LOCAL_AUTHN_ENABLED_FOR` with valid values for `enabled-for` property
-* ``IAM_LOCAL_AUTHN_LOGIN_PAGE_VISIBILITY` with valid values for `login-page-visibility` property
+In alternative, one can configure the local authentication settings using environment variables as
+described in the [Configuration][conf] section.
 
 When the local authentication (username/password) fields are hidden on the login page, it is possible
 to display them by adding the query string `?sll=y` to the login page URL. It may be useful, for
 example, to access the `admin` account if only username/password authentication has been configured
-for it and it `enable-for` has been set to `vo-admins`.
+for it and if `enable-for` has been set to `vo-admins`.
 
-Not that hiding local authentication on the login page without restricting the category of users
+Note that hiding local authentication on the login page without restricting the category of users
 able to use it doesn't really provide additional security.
+
+[conf]: ../#local-authentication-settings

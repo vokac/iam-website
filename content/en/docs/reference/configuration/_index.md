@@ -247,6 +247,19 @@ IAM_SPRING_SESSION_STORE_TYPE=none
 IAM_HEALTH_REDIS_PROBE_ENABLED=false
 ```
 
+## Local authentication settings
+
+It allows a user to log in with local credentials (username/password).  
+For more information, see the [Local Authentication section][local-authn].
+
+```bash
+# Set to 'hidden' if you want to hide the local login form
+IAM_LOCAL_AUTHN_LOGIN_PAGE_VISIBILITY=visible
+# Enables local login form to all users.
+# It can be restricted, changing the value to 'vo-admins' or 'none'
+IAM_LOCAL_AUTHN_ENABLED_FOR=all
+```
+
 ## Google authentication settings
 
 ```bash
@@ -379,3 +392,4 @@ IAM_PRIVACY_POLICY_TEXT=Privacy policy
 [spring-boot-conf-rules]: https://docs.spring.io/spring-boot/docs/1.3.8.RELEASE/reference/html/boot-features-external-config.html
 [redis]: https://redis.io/
 [wlcg-profile]: https://github.com/WLCG-AuthZ-WG/common-jwt-profile/blob/master/profile.md#token-validation
+[local-authn]: local_authn/
