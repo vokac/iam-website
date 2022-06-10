@@ -4,7 +4,7 @@ weight: 2
 ---
 
 IAM exposes the OpenID Connect/OAuth dynamic client registration functionality
-offered by the [MitreID OpenID Connect][mitreid] server libraries.
+on its dashboard's main page (it has been migrated by dashboard).
 
 In OAuth terminology, a client is an application or service that can interact
 with an authorisation server for authentication/authorization purposes.
@@ -17,22 +17,18 @@ A new client can be registered in the IAM in two ways:
 
 ## Registering a client using the dashboard
 
-Log into the service and click on the _MitreID dashboard_ link on the left
+Log into the service and click on the _My Clients_ link on the left
 navigation bar:
 
-![Mitre dashboard](../images/mitre-dashboard.png)
+![dashboard](../images/my_client-dashboard.png)
 
-From the MitreID dashboard, select _Client registration_:
+From the _My client_ link, select _New client_:
 
-![Mitre client reg](../images/mitre-client-reg-0.png)
-
-And then click on _New client_:
-
-![Mitre client reg](../images/mitre-client-reg-1.png)
+![client reg](../images/new-client-reg-0.png)
 
 A form will open that enable you to configure your client:
 
-![Mitre client reg](../images/mitre-client-reg-2.png)
+![client reg](../images/new-client-reg-1.png)
 
 The minimum information you have to provide is:
 
@@ -40,32 +36,32 @@ The minimum information you have to provide is:
 - *Redirect URI(s)*: one or more redirect URIs for your client; these are
   required if you choose to enable the authorization code flow;
 
-![Mitre client reg](../images/mitre-client-reg-3.png)
+![client reg](../images/new-client-reg-2.png)
 
-Remember to select the `offline_access` scope from the __Access tab__ if you
+Remember to select the `offline_access` scope from the __Scopes tab__ if you
 want to request refresh tokens for the client being created:
 
-![Mitre client reg](../images/mitre-client-reg-4.png)
+![client reg](../images/new-client-reg-3.png)
 
-You can then click the "Save" button at the bottom of the page:
+You can then click the __Save__ button at the bottom of the page:
 
-![Mitre client reg](../images/mitre-client-reg-5.png)
+![client reg](../images/new-client-reg-4.png)
 
 IAM will then generate client credentials for your client and other information
 that will be displayed as follows:
 
-![Mitre client reg](../images/mitre-client-reg-6.png)
+![client reg](../images/new-client-reg-5.png)
 
-The JSON tab provides client information in JSON:
+The JSON will look like this:
 
-![Mitre client reg](../images/mitre-client-reg-8.png)
+![client reg](../images/new-client-reg-7.png)
 
-Select the content of the text area and paste it in a local file, for future
-reference.
+![client reg](../images/new-client-reg-8.png)
 
-The JSON file contains the client secret and the registration access token,
-which can be used later to change the client configuration or to delete the
-client.
+
+It is reconmended to save this JSON in a local file for future reference
+
+The client secret and the registration access token, can be used later to change the client configuration, to delete the client and also to redeem a client
 
 [mitreid]: https://github.com/mitreid-connect/OpenID-Connect-Java-Spring-Server/wiki
 [reg-api]: {{< ref "/docs/reference/api/oidc-client-registration/" >}}
