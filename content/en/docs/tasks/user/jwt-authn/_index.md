@@ -2,7 +2,7 @@
 title: JWT client authentication
 ---
 
-IAM supports several method to authenticate an OAuth2 client to the token endpoint:
+IAM supports several methods to authenticate an OAuth2 client to the token endpoint:
 
 * client secret over HTTP basic authentication;
 * client secret over HTTP POST authentication;
@@ -11,8 +11,8 @@ IAM supports several method to authenticate an OAuth2 client to the token endpoi
 * no authentication (for public clients).
 
 The authentication via JWT assertion is defined in [RFC7523][jwt-authn].
-This is useful when a client can issue a token for himself. It is used in combination
-with several OAuth2 authorization grant, for instance the _authorization code_ flow (when a user has to approve the client in order to access to his/her resources), the _client credential_ flow (when a client is acting on his behalf), etc.
+This is useful when a client can issue a token for itself. It is used in combination
+with several OAuth2 authorization grant, for instance the _authorization code_ flow (when a user has to approve the client in order to access to their resources), the _client credential_ flow (when a client is acting on its own behalf), etc.
 
 ## JWT assertion validation
 
