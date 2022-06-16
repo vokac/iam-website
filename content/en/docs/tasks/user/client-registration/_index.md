@@ -4,10 +4,10 @@ weight: 2
 ---
 
 IAM exposes the OpenID Connect/OAuth dynamic client registration functionality
-on its dashboard's main page (it has been migrated by dashboard).
+on its own dashboard (it has been migrated by [MitreID][mitreid] dashboard).
 
 In OAuth terminology, a client is an application or service that can interact
-with an authorisation server for authentication/authorization purposes.
+with an authorization server for authentication/authorization purposes.
 
 A new client can be registered in the IAM in two ways:
 
@@ -32,7 +32,7 @@ A form will open that enable you to configure your client:
 
 The minimum information you have to provide is:
 
-- *client name*: choose a name for your client
+- *Client name*: choose a name for your client
 - *Redirect URI(s)*: one or more redirect URIs for your client; these are
   required if you choose to enable the authorization code flow;
 
@@ -52,16 +52,6 @@ that will be displayed as follows:
 
 ![client reg](../images/new-client-reg-5.png)
 
-The JSON will look like this:
-
-![client reg](../images/new-client-reg-7.png)
-
-![client reg](../images/new-client-reg-8.png)
-
-
-It is reconmended to save this JSON in a local file for future reference
-
-The client secret and the registration access token, can be used later to change the client configuration, to delete the client and also to redeem a client
 
 [mitreid]: https://github.com/mitreid-connect/OpenID-Connect-Java-Spring-Server/wiki
 [reg-api]: {{< ref "/docs/reference/api/oidc-client-registration/" >}}
