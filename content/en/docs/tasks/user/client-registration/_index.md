@@ -38,7 +38,7 @@ The minimum information you have to provide is:
 
 ![client reg](../images/new-client-reg-2.png)
 
-Remember to select the `offline_access` scope from the __Scopes tab__ if you
+Remember to select the `offline_access` scope from the __Scopes__ tab if you
 want to request refresh tokens for the client being created:
 
 ![client reg](../images/new-client-reg-3.png)
