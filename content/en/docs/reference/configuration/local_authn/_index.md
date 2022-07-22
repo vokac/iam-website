@@ -17,7 +17,7 @@ iam:
   local-authn:
     # possible values for enabled-for: all, vo-admins, none
     enabled-for: vo-admins 
-    # possible values: hidden, visible
+    # possible values: hidden, hidden-with-link, visible
     login-page-visibility: hidden 
 ```
 In alternative, one can configure the local authentication settings using environment variables as
