@@ -69,9 +69,8 @@ $ docker logs -f iam-login-service
 When using Podman, the `docker` command must be replaced by `podman` with the following 
 differences in options:
 
-* `--restart` is silently ignored as start/stop of the container as boot time is controlled
-with `systemd`.
-  * See Podman documentation, in particular `podman generate systemd --help`
+* `--restart` is silently ignored as start/stop of the container at boot time is controlled
+with `systemd` (see Podman documentation, [here][podman-generate-systemd]).
 * You need to add option `Z` to third field of `-v` option so that the SELinux context
 type is properly managed and the use of the volume by another container is prevented.
 * Ensure that the directories containing the environment file and the keystore are 
@@ -96,3 +95,4 @@ $ podman logs -f iam-login-service
 ```
 
 [config-reference]: {{< ref "/docs/reference/configuration" >}}
+[podman-generate-systemd]: https://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html
