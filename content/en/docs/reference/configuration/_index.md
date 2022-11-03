@@ -362,6 +362,16 @@ IAM_NOTIFICATION_FROM=indigo@localhost
 # The email address used as the recipient in IAM email notifications
 IAM_NOTIFICATION_ADMIN_ADDRESS=indigo-alerts@localhost
 
+# Notification policy for account requests. The default value is notify-address
+# meaning that notifications just arrive to the email address
+# specified above. Set to notify-admins if you want to notify
+# all IAM admins or to notify-address-and-admins to combine the two behaviors
+IAM_NOTIFICATION_ADMIN_NOTIFICATION_POLICY=notify-address
+
+# Notification policy for group requests. Default value notifies both
+# admins and group managers. Set to notify-gms if you want to notify only group managers
+IAM_NOTIFICATION_GROUP_MANAGER_NOTIFICATION_POLICY=notify-gms-and-admins
+
 # Time interval, in milliseconds, between two consecutive runs of IAM notification 
 # dispatch task 
 IAM_NOTIFICATION_TASK_DELAY=30000
