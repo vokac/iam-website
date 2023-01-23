@@ -134,6 +134,9 @@ voms:
     # The VOMS proxy lifetime in seconds
     # The default value is 12 hours
     max-ac-lifetime-in-seconds: 43200
+
+    # The optional group label
+    optional-group-label: wlcg.optional-group
 ```
 
 For an example configuration, see the [VOMS AA docker compose
