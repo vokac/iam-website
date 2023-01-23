@@ -128,6 +128,10 @@ voms:
     # instead of
     # /voms
     use-legacy-fqan-encoding: true
+
+    # The VOMS proxy lifetime in seconds
+    # The default value is 12 hours
+    max-ac-lifetime-in-seconds: 43200
 ```
 
 For an example configuration, see the [VOMS AA docker compose
