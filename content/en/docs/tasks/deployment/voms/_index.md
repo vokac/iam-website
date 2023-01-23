@@ -111,6 +111,7 @@ voms:
     trust-anchors-dir: /etc/grid-security/certificates
 
     # How often should trust anchors (and CRLs) be refreshed
+    # The default value is 86400
     trust-anchors-refresh-interval-secs: 14400
   aa:
     # The VOMS attribute authority host
@@ -127,6 +128,7 @@ voms:
     # /voms/Role=NULL/Capability=NULL
     # instead of
     # /voms
+    # The default value is false
     use-legacy-fqan-encoding: true
 
     # The VOMS proxy lifetime in seconds
