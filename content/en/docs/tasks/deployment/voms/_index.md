@@ -5,10 +5,10 @@ description: >
   Instructions on how to deploy and configure the IAM VOMS attribute authority micro-service
 ---
 
-## The IAM VOMS attribute authority 
+## The IAM VOMS attribute authority
 
 The IAM [VOMS attribute authority][voms-aa] (AA) provide backward-compatible
-[VOMS][voms] support for a Virtual Organization managed with IAM. 
+[VOMS][voms] support for a Virtual Organization managed with IAM.
 
 ### Deployment architecture
 
@@ -21,7 +21,7 @@ and as a VOMS server for a given organization. TLS termination and client VOMS
 atttribute certificate parsing and validation is delegated to [OpenResty
 VOMS][openresty-voms], which can de deployed as a sidecar service that just protects the
 VOMS AA or also in front of the IAM backend application. The two scenarios are
-depicted above. 
+depicted above.
 
 In order to deploy a VOMS attribute authority, you can use the following docker
 images:
@@ -68,7 +68,7 @@ file][voms-aa-compose-openresty].
 The VOMS AA is a spring boot application that shares the persistence
 layer implementation with IAM, and as such can inspect the IAM database.
 
-An example configuration for the VOMS AA service is given below, with comments 
+An example configuration for the VOMS AA service is given below, with comments
 to explain the meaning of the parameters:
 
 ```yaml
@@ -76,16 +76,16 @@ server:
   address: 0.0.0.0 # bind on all IP addresses
   port: 8080 # listen on port 8080
   use-forward-headers: true # assume you're behind a reverse proxy
-  
-  # change the default http header size limit to accomodate VOMS information passed 
+
+  # change the default http header size limit to accomodate VOMS information passed
   # down by the ngx-voms server
-  max-http-header-size: 16000 
-  
+  max-http-header-size: 16000
+
 
 spring:
   main:
-    banner-mode: "off" 
-  
+    banner-mode: "off"
+
   jpa:
     open-in-view: true
 
@@ -95,13 +95,13 @@ spring:
     url: jdbc:mysql://${IAM_DB_HOST}:${IAM_DB_PORT:3306}/${IAM_DB_NAME}?useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
     username: ${IAM_DB_USERNAME}
     password: ${IAM_DB_PASSWORD}
-  
+
   flyway:
     enabled: false
-      
+
 voms:
   tls:
-    # The VOMS AA certificate 
+    # The VOMS AA certificate
     certificate-path: /certs/hostcert.pem
 
     # The VOMS AA certificate key
@@ -116,7 +116,7 @@ voms:
     # The VOMS attribute authority host
     host: voms.example
 
-    # The VOMS attribute authority port. Note that this is the port on 
+    # The VOMS attribute authority port. Note that this is the port on
     # the reverse proxy, not the local service port
     port: 443
 
@@ -124,7 +124,7 @@ voms:
     vo-name: ${VOMS_AA_VO}
 
     # Use FQAN legacy encoding, i.e.,
-    # /voms/Role=NULL/Capability=NULL 
+    # /voms/Role=NULL/Capability=NULL
     # instead of
     # /voms
     use-legacy-fqan-encoding: true
