@@ -136,7 +136,8 @@ voms:
     max-ac-lifetime-in-seconds: 43200
 
     # The optional group label
-    optional-group-label: wlcg.optional-group
+    # The default value is wlcg.optional-group
+    optional-group-label: voms.role
 ```
 
 For an example configuration, see the [VOMS AA docker compose
