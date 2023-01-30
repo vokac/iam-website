@@ -137,6 +137,10 @@ voms:
 
     # The optional group label
     # The default value is wlcg.optional-group
+    # This option specify the label to be assigned for custom VOMS roles.
+    # E.g.: "pilot" is a subgroup of the "vo-name" IAM group. If it is made
+    # "optional group" in IAM via the dedicated button, users belonging to
+    # it can request the "pilot" VOMS role.
     optional-group-label: voms.role
 ```
 
