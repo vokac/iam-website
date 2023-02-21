@@ -8,6 +8,12 @@ The theme is included in this project as a Git submodule:
  a053131a4ebf6a59e4e8834a42368e248d98c01d themes/docsy (heads/master)
 ```
 
+Clone the IAM website source code with
+
+```bash
+git clone --recurse-submodules https://github.com/indigo-iam/iam-website.git
+```
+
 ## Running the website locally
 
 Building and running the site locally requires a recent `extended` version of [Hugo](https://gohugo.io).
