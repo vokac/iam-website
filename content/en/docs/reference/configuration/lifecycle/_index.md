@@ -28,15 +28,24 @@ file][custom-config-file]:
 ```yaml
 lifecycle:
   account:
-    account-lifetime-days: 365  ## 0 means unbounded validity
-    read-only-end-time: false  ## When true, the end time cannot be changed from IAM APIs and dashboard
+    # 0 means unbounded validity
+    account-lifetime-days: 0
+    # When true, the end time cannot be changed from IAM APIs and dashboard
+    read-only-end-time: false
     expired-account-policy:
-      suspension-grace-period-days: 7 ## Accounts will be suspended after 7 days since expiration
-      remove-expired-accounts: false ## When false, expired accounts are not removed
-      removal-grace-period-days: 30 ## Accounts will be removed after 30 days since expiration (if remove-expired-accounts is true)
+      # Accounts will be suspended after 7 days since expiration
+      suspension-grace-period-days: 7
+      # When false, expired accounts are not removed
+      remove-expired-accounts: true
+      # Accounts will be removed after 30 days since expiration
+      # (if remove-expired-accounts is true)
+      removal-grace-period-days: 30
     expired-accounts-task:
-      cron-schedule:  0 */5 * * * *  ## spring cron schedule for the lifecycle task (default setting is every 5 mins)
-      enabled: true ## To disable automatic account expiration set this to false
+      # Internal cron schedule for the lifecycle task.
+      # Default setting is every 5 mins
+      cron-schedule:  0 */5 * * * *
+      # To disable automatic account expiration set this to false
+      enabled: true
 ```
 
 
