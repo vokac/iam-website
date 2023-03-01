@@ -71,7 +71,7 @@ This is the default profile for IAM.
 
 With this profile:
 
-- groups are enconded in the `groups` claim; all the groups the user is member
+- groups are encoded in the `groups` claim; all the groups the user is member
   of are included in the groups claim;
 
 - authentication information (username, email, groups) is not by default
@@ -98,6 +98,20 @@ In particular:
 - groups are not included by default in access and ID tokens; 
 
 This profile is assigned to clients using the `wlcg` scope.
+
+With this profile:
+
+- groups are encoded in the `wlcg-groups` claim; all the non-optional groups the user is member
+  of are included in the wlcg-groups claim;
+
+- authentication information (username, email, groups) is not by default
+  included in access tokens; this behaviour can be changed by setting the
+  `IAM_ACCESS_TOKEN_INCLUDE_AUTHN_INFO=true` environment variable;
+
+- the `nbf` (not before) claim is not set in access tokens; this behaviour
+  can be changed by setting the `IAM_ACCESS_TOKEN_INCLUDE_NBF=true`
+  environment variable;
+
 
 #### Requesting groups with the WLCG profile
 
